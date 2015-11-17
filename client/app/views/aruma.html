@@ -1,0 +1,498 @@
+<!doctype html>
+<link rel="stylesheet" href="styles/style.css"> 
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+      
+    <title>ARUMA LAB</title>
+      
+    <meta name="description" content="">
+
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css' />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <link rel="stylesheet" href="styles/style.css"> 
+
+    <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.min.css">
+    <!-- endbuild -->
+
+    <!-- Roboto - GoogleFont include -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic,900,900italic,100italic,100' rel='stylesheet' type='text/css'>
+
+    <!-- Lato - GoogleFont include -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic,300italic,300,100italic,100' rel='stylesheet' type='text/css'>
+  
+</head>
+  
+<body ng-app="poliApp">
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - 
+
+    PORTADA 
+
+    - - - - - - - - - - - - - - - - - - - - - - - -->
+  
+    <div class="full_screen" id="portada">
+
+        <div class="imagen_portada"></div>
+
+        <div class="texto_portada">
+          
+            <h1>Aruma 77777 <small>LAB</small></h1>
+
+            <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ex pulvinar, vulputate arcu sit amet, gravida nulla. Nulla facilisi. Vivamus nisi lectus, gravida eget interdum id, tincidunt at nibh. Phasellus lobortis augue quis condimentum consequat. Donec quis urna consectetur, auctor dui at, volutpat enim.</h4>
+
+        </div>
+
+    </div>
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - 
+
+    CONTENIDO - HOME
+
+    - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <div id="inicio"></div>
+
+    <!--
+    <div ng-include = "'/views/main.html'"></div>
+    -->
+
+    <div class="mini_gap"></div>
+
+    <div>
+
+        <div class="button-group filters-button-group">
+
+            <button class="btn_filtro is-checked" data-filter="*">todo</button>
+
+            <button class="btn_filtro" data-filter=".tag_novedades">novedades</button>
+
+            <button class="btn_filtro" data-filter=".tag_emprendimientos">emprendimientos</button>
+
+            <button class="btn_filtro" data-filter=".tag_actividades">actividades</button>
+
+            <button class="btn_filtro" data-filter=".tag_laboratorio">LABORATORIO</button>
+
+        </div>
+
+        <div class="toggle_map">
+
+            <h4>board <i class="fa fa-toggle-off"></i> mapa</h4>
+
+        </div>
+
+        <div class="mini_gap"></div>
+
+        <div class="grid">
+
+          <div class="grid-sizer"></div>
+
+          <div class="grid-item tag_emprendimientos tag_novedades">
+
+            <img src="/images/haulani/hau_cover01.jpg" />
+
+            <div class="caption"><div>
+
+                <h2>Haulani</h2>
+
+                <span>Helados que hacen bien</span>
+
+            </div></div>
+
+          </div>
+
+          <div class="grid-item tag_laboratorio">
+
+            <img src="/images/laPazAlimenta/laPazAlimenta_cover01.jpg" />
+
+            <div class="caption"><div>
+
+                <h2>La Paz Alimenta</h2>
+
+                <span>Alimentación Sagrada | Resto & clases</span>
+
+            </div></div>
+
+          </div>
+
+          <div class="grid-item tag_actividades tag_novedades">
+
+            <img src="/images/EVENTOS/terapiaFloral02.jpg" />
+
+            <div class="caption"><div>
+
+                <h2>Terapia Floral</h2>
+
+                <span>Taller Teórico / Práctico</span>
+
+                <span class="lugar">Beccar</span>
+
+            </div></div>
+
+          </div>
+
+          <div class="grid-item tag_emprendimientos tag_novedades">
+
+            <img src="/images/amasutra/amasutra_cover01.jpg" />
+
+            <div class="caption"><div>
+
+                <h2>Amasutra</h2>
+
+                <span>Alimento para la Piel</span>
+
+            </div></div>
+
+          </div>
+
+          <div class="grid-item tag_emprendimientos tag_novedades">
+
+            <img src="/images/ARUMA/aruma_cover01.jpg" />
+
+            <div class="caption"><div>
+
+                <h2>Comunidad Aruma</h2>
+
+                <span class="lugar">Beccar</span>
+
+            </div></div>
+
+          </div>
+
+          <div class="grid-item tag_emprendimientos tag_novedades">
+
+            <img src="/images/germinar/germinar_cover01.png" />
+
+            <div class="caption"><div>
+
+                <h2>Germinar</h2>
+
+                <span class="lugar">Beccar</span>
+
+            </div></div>
+
+          </div>
+
+          <div class="grid-item">
+
+            <img src="/images/mana/mana_cover01.jpg" />
+
+            <div class="caption"><div>
+
+                <h2>Mána</h2>
+
+                <span>Bebidas para disfrutar con alegría</span>
+
+            </div></div>
+
+          </div>
+
+          <div class="grid-item">
+
+            <img src="/images/EVENTOS/Reiki_cover02.jpg" />
+
+            <div class="caption"><div>
+
+                <h2>Reiki Nivel 1</h2>
+
+                <span>Taller Teórico / Práctico</span>
+
+                <span class="lugar">Beccar</span>
+
+            </div></div>
+
+          </div>
+
+        </div>
+
+    </div>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - 
+
+    BARRA DE INFORMACIÓN
+
+    - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <div class="sec_info">
+
+        <div class="info_inner">
+        
+            <h1>Estamos en contacto</h1>
+
+            <div class="info_botones">
+
+                <button class="btn_action">Newsletter</button>
+
+                <button class="btn_nav">Escribinos</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - 
+
+    FOOTER
+
+    - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <footer>
+
+        <div class="row centered_90">
+          
+            <div class="col-md-3">
+
+                <div class="gap"></div>
+
+                <h2>ARUMA <small>LAB</small></h2>
+
+            </div>
+
+
+            <div class="col-xs-6 col-sm-4 col-md-3">
+
+                <div class="gap"></div>
+
+                <h4>Recent Posts</h4>
+
+                <div class="recent_post">
+
+                    <p>Highlights plus inner <i class="fa fa-arrow-right"></i></p>
+
+                    <p class="fecha">28 AGO 2015</p>
+
+                </div>
+
+
+                <div class="recent_post">
+
+                    <p>Highlights plus inner <i class="fa fa-arrow-right"></i></p>
+
+                    <p class="fecha">28 AGO 2015</p>
+
+                </div>
+
+                <div class="gap"></div>
+
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-3">
+
+                <div class="gap"></div>
+
+                <h4>Latest Updates</h4>
+
+                <div class="recent_post">
+
+                    <span><i class="fa fa-twitter"></i></span>
+
+                    <span class="twitter_text">Acá un comentario de Twitter que puede decir cualquier cosa</span>
+
+                </div>
+
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-3">
+
+                <div class="gap"></div>
+
+                <h4>INSTAGRAM</h4>
+
+                <div class="recent_post">
+
+                    <span><i class="fa fa-twitter"></i></span>
+
+                    <span class="twitter_text">Acá un comentario de Twitter que puede decir cualquier cosa</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="bottom_bar">
+
+            <span class="copyright"><i class="fa fa-copyright"></i> Copyright bla bla</span>
+
+            <a class="btn_navegacion" href="#portada">TOP</a>
+
+            <span class="social"><i class="fa fa-twitter"></i> <i class="fa fa-facebook"></i><i class="fa fa-instagram"></i> <i class="fa fa-vimeo"></i></span>
+
+        </div>
+
+    </footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script> -->
+
+
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/get-style-property/get-style-property.js"></script>
+    <script src="bower_components/get-size/get-size.js"></script>
+    <script src="bower_components/matches-selector/matches-selector.js"></script>
+    <script src="bower_components/eventie/eventie.js"></script>
+    <script src="bower_components/doc-ready/doc-ready.js"></script>
+    <script src="bower_components/eventEmitter/EventEmitter.js"></script>
+    <script src="bower_components/fizzy-ui-utils/utils.js"></script>
+    <!--
+    <script src="bower_components/outlayer/outlayer.js"></script>
+    <script src="bower_components/masonry/masonry.js"></script>
+    <script src="bower_components/isotope/js/isotope.js"></script>
+    -->
+    <script src="bower_components/isotope/dist/isotope.pkgd.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <!-- endbuild -->
+
+  
+    <!-- SMOOTH SCROLLING -->
+    <script>
+    
+    $(function() {
+
+        $('a[href*=#]').click(function() {
+
+            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+
+                target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+
+                if (target.length) {
+
+                    $('html,body').animate({
+
+                        scrollTop: target.offset().top
+
+                    }, 1000);
+
+                    return false;
+                }
+            }
+        });
+        
+        // init Isotope
+        
+        var $grid = $('.grid').isotope({
+
+            itemSelector: '.grid-item',
+
+            layoutMode: 'masonry'
+
+        });
+
+        // filter functions
+        var filterFns = {
+
+            // show if number is greater than 50
+            numberGreaterThan50: function() {
+
+              var number = $(this).find('.number').text();
+
+              return parseInt( number, 10 ) > 50;
+
+            },
+
+            // show if name ends with -ium
+            ium: function() {
+
+              var name = $(this).find('.name').text();
+
+              return name.match( /ium$/ );
+
+            }
+        };
+        
+        // bind filter button click
+        $('.filters-button-group').on( 'click', 'button', function() {
+
+            var filterValue = $( this ).attr('data-filter');
+
+            // use filterFn if matches value
+            filterValue = filterFns[ filterValue ] || filterValue;
+
+            $grid.isotope({ filter: filterValue });
+
+        });
+        
+        // change is-checked class on buttons
+        $('.button-group').each( function( i, buttonGroup ) {
+            var $buttonGroup = $( buttonGroup );
+            $buttonGroup.on( 'click', 'button', function() {
+              $buttonGroup.find('.is-checked').removeClass('is-checked');
+              $( this ).addClass('is-checked');
+            });
+        });
+      
+    });
+
+    </script>
+
+    <script type="text/javascript">
+        // external js: masonry.pkgd.js, imagesloaded.pkgd.js
+
+        $(document).ready( function() {
+          // init Masonry
+          var $grid = $('.grid').masonry({
+            itemSelector: '.grid-item',
+            percentPosition: true,
+            columnWidth: '.grid-sizer'
+          });
+          // layout Isotope after each image loads
+          $grid.imagesLoaded().progress( function() {
+            $grid.masonry();
+          });  
+
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>

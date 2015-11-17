@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Aruma
+        psr4_prefix: Aruma
+        src_path: app

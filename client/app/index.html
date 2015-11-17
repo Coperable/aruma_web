@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+      
+    <title>ARUMA LAB</title>
+      
+    <meta name="description" content="">
+
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css' />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <link rel="stylesheet" href="styles/style.css"> 
+
+    <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.min.css">
+    <!-- endbuild -->
+
+    <!-- Roboto - GoogleFont include -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic,900,900italic,100italic,100' rel='stylesheet' type='text/css'>
+
+    <!-- Lato - GoogleFont include -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,900,900italic,300italic,300,100italic,100' rel='stylesheet' type='text/css'>
+  
+</head>
+  
+<body ng-app="poliApp">
+
+    <div id="main_container" ng-view></div>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - 
+
+    FOOTER
+
+    - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <footer>
+
+        <div class="row centered_90">
+          
+            <div class="col-md-3">
+
+                <div class="gap"></div>
+
+                <h2>ARUMA <small>LAB</small></h2>
+
+            </div>
+
+
+            <div class="col-xs-6 col-sm-4 col-md-3">
+
+                <div class="gap"></div>
+
+                <h4>Recent Posts</h4>
+
+                <div class="recent_post">
+
+                    <p>Highlights plus inner <i class="fa fa-arrow-right"></i></p>
+
+                    <p class="fecha">28 AGO 2015</p>
+
+                </div>
+
+
+                <div class="recent_post">
+
+                    <p>Highlights plus inner <i class="fa fa-arrow-right"></i></p>
+
+                    <p class="fecha">28 AGO 2015</p>
+
+                </div>
+
+                <div class="gap"></div>
+
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-3">
+
+                <div class="gap"></div>
+
+                <h4>Latest Updates</h4>
+
+                <div class="recent_post">
+
+                    <span><i class="fa fa-twitter"></i></span>
+
+                    <span class="twitter_text">Acá un comentario de Twitter que puede decir cualquier cosa</span>
+
+                </div>
+
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-3">
+
+                <div class="gap"></div>
+
+                <h4>INSTAGRAM</h4>
+
+                <div class="recent_post">
+
+                    <span><i class="fa fa-twitter"></i></span>
+
+                    <span class="twitter_text">Acá un comentario de Twitter que puede decir cualquier cosa</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="bottom_bar">
+
+            <span class="copyright"><i class="fa fa-copyright"></i> Copyright bla bla</span>
+
+            <a class="btn_navegacion" href="#portada">TOP</a>
+
+            <span class="social"><i class="fa fa-twitter"></i> <i class="fa fa-facebook"></i><i class="fa fa-instagram"></i> <i class="fa fa-vimeo"></i></span>
+
+        </div>
+
+    </footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script> -->
+
+
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/externals/isotope.pkgd.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <!-- endbuild -->
+
+  
+
+</body>
+
+</html>
