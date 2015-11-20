@@ -48,7 +48,7 @@ return [
             'root'   => storage_path('app'),
         ],
 
-		's3-slam' => [
+		's3-aruma' => [
 			'driver' => 's3',
 			'key'    => env('AWS_KEY', ''),
 			'secret' => env('AWS_SECRET', ''),

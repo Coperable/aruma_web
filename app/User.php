@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Aruma\Model\Role;
+use Aruma\Model\Organization;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -89,6 +90,10 @@ class User extends Model implements AuthenticatableContract,
      }
 
     public function organizations() {
-        return $this->belongsToMany('Aruma\Model\Organization', 'users_organizations');
+        return $this->belongsToMany('Aruma\Model\Organization', 'organizations_users');
+    }
+
+    public function centers() {
+        return $this->belongsToMany('Aruma\Model\Center', 'centers_users');
     }
 }

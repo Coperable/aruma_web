@@ -37,6 +37,9 @@ class CreateActivitiesTable extends Migration {
 
             $table->boolean('center_activity')->default(FALSE);
 
+            $table->boolean('remark')->default(false);
+            $table->boolean('novelty')->default(false);
+
             $table->timestamps();
         });
 

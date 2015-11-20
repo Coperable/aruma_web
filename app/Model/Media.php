@@ -1,4 +1,4 @@
-<?php namespace Slam\Model;
+<?php namespace Aruma\Model;
 
 use Illuminate\Database\Eloquent\Model;
  

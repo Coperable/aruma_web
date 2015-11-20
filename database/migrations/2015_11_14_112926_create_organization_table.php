@@ -29,9 +29,9 @@ class CreateOrganizationTable extends Migration
             $table->mediumText('website')->nullable();
 
             $table->mediumText('main_picture')->nullable();
-            $table->mediumText('picture_1')->nullable();
-            $table->mediumText('picture_2')->nullable();
-            $table->mediumText('picture_3')->nullable();
+
+            $table->boolean('remark')->default(false);
+            $table->boolean('novelty')->default(false);
 
             $table->string('title_legend');
             $table->string('products_legend');

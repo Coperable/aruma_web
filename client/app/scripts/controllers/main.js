@@ -8,10 +8,9 @@
  * Controller of the poliApp
  */
 angular.module('poliApp')
-.controller('MainCtrl', function ($scope, $timeout) {
+.controller('MainCtrl', function ($scope, $timeout, $http, api_host, Page) {
     $scope.setup_components = function() {
 
-        $timeout(function() {
             jQuery('a[href*=#]').click(function() {
                 if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
                     var target = jQuery(this.hash);
@@ -68,11 +67,31 @@ angular.module('poliApp')
             });  
             */
 
-        }, 1);
-
     };
 
-    $scope.setup_components();
+    $scope.arrange_items = [];
+    $scope.items = [];
+
+    $scope.entities = ['organizations', 'products', 'activities', 'centers'];
+
+    $http.get(api_host+'/api/pages/home').success(function(page) {
+        $scope.home = page;
+
+        var data = $scope.home;
+
+        _.each($scope.entities , function(entity) {
+            _.each(data[entity], function(item) {
+                $scope.items.push(item);
+            });
+        });
+
+        $scope.arrange_items = _.shuffle($scope.items);
+
+        $timeout(function() {
+            $scope.setup_components();
+        }, 2000);
+    });
+
 })
 .controller('EmprendimientoCtrl', function () {
 

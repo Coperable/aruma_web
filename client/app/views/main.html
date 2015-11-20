@@ -6,13 +6,13 @@
   
     <div class="full_screen" id="portada">
 
-        <div class="imagen_portada" style="background: url(../images/ARUMA/aruma_cover00.jpg) no-repeat center center;"></div>
+        <div class="imagen_portada" ng-style="{'background-image': 'url(http://images.collab-dev.com/aruma/'+home.main_picture+')'}" ng-style="{'background-size: cover !important;'}" ></div>
 
         <div class="texto_portada">
           
             <h1>Aruma <small>LAB</small></h1>
 
-            <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ex pulvinar, vulputate arcu sit amet, gravida nulla. Nulla facilisi. Vivamus nisi lectus, gravida eget interdum id, tincidunt at nibh. Phasellus lobortis augue quis condimentum consequat. Donec quis urna consectetur, auctor dui at, volutpat enim.</h4>
+            <h4>{{home.description}}</h4>
 
         </div>
 
@@ -29,10 +29,6 @@
 
     <div id="inicio"></div>
 
-    <!--
-    <div ng-include = "'/views/main.html'"></div>
-    -->
-
     <div class="mini_gap"></div>
 
     <div>
@@ -47,7 +43,7 @@
 
             <button class="btn_filtro" data-filter=".tag_actividades">actividades</button>
 
-            <button class="btn_filtro" data-filter=".tag_laboratorio">LABORATORIO</button>
+            <button class="btn_filtro" data-filter=".tag_laboratorio">laboratorio</button>
 
         </div>
 
@@ -61,123 +57,16 @@
 
         <div class="grid">
 
-          <div class="grid-sizer"></div>
+            <div class="grid-sizer"></div>
 
-          <div class="grid-item tag_emprendimientos tag_novedades">
+                <div class="grid-item tag_emprendimientos tag_novedades" ng-repeat="item in arrange_items |limitTo: 8">
+                    <img ng-src="http://images.collab-dev.com/x336/smart/aruma/{{item.main_picture}}" />
+                    <div class="caption"><div>
+                    <h2>{{item.name}}</h2>
+                    <span>{{item.description}}</span>
+                </div>
 
-            <img src="/images/haulani/hau_cover01.jpg" />
-
-            <div class="caption"><div>
-
-                <h2>Haulani</h2>
-
-                <span>Helados que hacen bien</span>
-
-            </div></div>
-
-          </div>
-
-          <div class="grid-item tag_laboratorio">
-
-            <img src="/images/laPazAlimenta/laPazAlimenta_cover01.jpg" />
-
-            <div class="caption"><div>
-
-                <h2>La Paz Alimenta</h2>
-
-                <span>Alimentación Sagrada | Resto & clases</span>
-
-            </div></div>
-
-          </div>
-
-          <div class="grid-item tag_actividades tag_novedades">
-
-            <img src="/images/EVENTOS/terapiaFloral02.jpg" />
-
-            <div class="caption"><div>
-
-                <h2>Terapia Floral</h2>
-
-                <span>Taller Teórico / Práctico</span>
-
-                <span class="lugar">Beccar</span>
-
-            </div></div>
-
-          </div>
-
-          <div class="grid-item tag_emprendimientos tag_novedades">
-
-            <img src="/images/amasutra/amasutra_cover01.jpg" />
-
-            <div class="caption"><div>
-
-                <h2>Amasutra</h2>
-
-                <span>Alimento para la Piel</span>
-
-            </div></div>
-
-          </div>
-
-          <div class="grid-item tag_emprendimientos tag_novedades">
-
-            <img src="/images/ARUMA/aruma_cover01.jpg" />
-
-            <div class="caption"><div>
-
-                <h2>Comunidad Aruma</h2>
-
-                <span class="lugar">Beccar</span>
-
-            </div></div>
-
-          </div>
-
-          <div class="grid-item tag_emprendimientos tag_novedades">
-
-            <img src="/images/germinar/germinar_cover01.png" />
-
-            <div class="caption"><div>
-
-                <h2>Germinar</h2>
-
-                <span class="lugar">Beccar</span>
-
-            </div></div>
-
-          </div>
-
-          <div class="grid-item">
-
-            <img src="/images/mana/mana_cover01.jpg" />
-
-            <div class="caption"><div>
-
-                <h2>Mána</h2>
-
-                <span>Bebidas para disfrutar con alegría</span>
-
-            </div></div>
-
-          </div>
-
-          <div class="grid-item">
-
-            <img src="/images/EVENTOS/Reiki_cover02.jpg" />
-
-            <div class="caption"><div>
-
-                <h2>Reiki Nivel 1</h2>
-
-                <span>Taller Teórico / Práctico</span>
-
-                <span class="lugar">Beccar</span>
-
-            </div></div>
-
-          </div>
+            </div>
 
         </div>
 

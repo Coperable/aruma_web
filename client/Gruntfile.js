@@ -57,10 +57,10 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
-      
       less: {
           files: ["<%= yeoman.app %>/styles-less/{,*/}*.less"],
-          tasks: ["less:server"]
+
+          tasks: ['less:server', 'buildless', 'build']
       },
 
       gruntfile: {
@@ -73,7 +73,8 @@ module.exports = function (grunt) {
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.app %>/fonts/{,*/}*.*'
         ]
       }
     },
@@ -221,6 +222,7 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.dist %>/fonts/*',
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
       }
@@ -263,6 +265,7 @@ module.exports = function (grunt) {
         }
     },
 
+
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -291,6 +294,7 @@ module.exports = function (grunt) {
         assetsDirs: [
           '<%= yeoman.dist %>',
           '<%= yeoman.dist %>/images',
+          '<%= yeoman.dist %>/fonts',
           '<%= yeoman.dist %>/styles'
         ],
         patterns: {
@@ -410,6 +414,7 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'images/{,*/}*.{webp}',
+            'fonts/{,*/}*.*',
             'views/{,*/}*.*',
             'resources/{,*/}*.*',
             'styles/fonts/{,*/}*.*'
@@ -425,7 +430,6 @@ module.exports = function (grunt) {
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
         }]
-
       },
       deploy: {
         files: [{
@@ -439,6 +443,7 @@ module.exports = function (grunt) {
             '*.html',
             'images/{,*/}*.{webp}',
             'resources/{,*/}*.*',
+            'fonts/{,*/}*.*',
             'scripts/{,*/}*.*',
             'styles/{,*/}*.*',
             'bower_components/{,*/}*.*',
@@ -459,15 +464,17 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'less:dist',
         'copy:styles'
       ],
       test: [
         'copy:styles'
       ],
       dist: [
+        'less:dist',
         'copy:styles',
-        'imagemin',
-        'svgmin'
+        //'imagemin',
+        //'svgmin'
       ]
     },
 
@@ -505,6 +512,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'less',
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',

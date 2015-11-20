@@ -13,6 +13,7 @@ class CreateOrganizationsUsersTable extends Migration {
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('organization_id')->unsigned();
             $table->foreign('organization_id')->references('id')->on('organizations');
+            $table->boolean('admin')->default(false);
 			$table->timestamps();
 
 		});

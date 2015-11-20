@@ -1,4 +1,4 @@
-<?php namespace Slam\Model;
+<?php namespace Aruma\Model;
 
 use Illuminate\Database\Eloquent\Model;
  
@@ -9,11 +9,11 @@ class UserRole extends Model {
     protected $fillable = ['user_id', 'role_id'];
 
     public function user() {
-        return $this->hasOne('Slam\User');
+        return $this->hasOne('Aruma\User');
     }
 
     public function role() {
-        return $this->hasOne('Slam\Model\Role');
+        return $this->hasOne('Aruma\Model\Role');
     }
 
 

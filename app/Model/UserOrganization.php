@@ -1,19 +1,19 @@
-<?php namespace Slam\Model;
+<?php namespace Aruma\Model;
 
 use Illuminate\Database\Eloquent\Model;
  
-class UserCompetition extends Model {
+class UserOrganization extends Model {
 
-    protected $table = 'users_competitions';
+    protected $table = 'organizations_users';
 
-    protected $fillable = ['user_id', 'competition_id'];
+    protected $fillable = ['user_id', 'organization_id'];
 
     public function user() {
-        return $this->hasOne('Slam\User');
+        return $this->hasOne('Aruma\User');
     }
 
-    public function competition() {
-        return $this->hasOne('Slam\Model\Competition');
+    public function organization() {
+        return $this->hasOne('Aruma\Model\Organization');
     }
 
 

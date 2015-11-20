@@ -2,6 +2,7 @@
 
 return [
 
+    'token_secret' => env('JWT_TOKEN_SECRET', 'some random string'),
 
     'debug' => env('APP_DEBUG', false),
 

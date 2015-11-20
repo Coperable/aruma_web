@@ -18,7 +18,9 @@ class CreateProductsTable extends Migration {
             $table->longText('details')->nullable();
 
             $table->mediumText('main_picture')->nullable();
-            $table->mediumText('picture_1')->nullable();
+
+            $table->boolean('remark')->default(false);
+            $table->boolean('novelty')->default(false);
 
             $table->timestamps();
         });
