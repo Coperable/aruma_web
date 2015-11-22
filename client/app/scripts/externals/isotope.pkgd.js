@@ -1,53 +1,24 @@
-/*!
- * Isotope PACKAGED v2.2.2
- *
- * Licensed GPLv3 for open source use
- * or Isotope Commercial License for commercial use
- *
- * http://isotope.metafizzy.co
- * Copyright 2015 Metafizzy
- */
-
-/**
- * Bridget makes jQuery widgets
- * v1.1.0
- * MIT license
- */
 
 ( function( window ) {
 
-
-
-// -------------------------- utils -------------------------- //
 
 var slice = Array.prototype.slice;
 
 function noop() {}
 
-// -------------------------- definition -------------------------- //
-
 function defineBridget( $ ) {
 
-// bail if no jQuery
 if ( !$ ) {
   return;
 }
 
-// -------------------------- addOptionMethod -------------------------- //
 
-/**
- * adds option method -> $().plugin('option', {...})
- * @param {Function} PluginClass - constructor class
- */
 function addOptionMethod( PluginClass ) {
-  // don't overwrite original option method
   if ( PluginClass.prototype.option ) {
     return;
   }
 
-  // option setter
   PluginClass.prototype.option = function( opts ) {
-    // bail out if not an object
     if ( !$.isPlainObject( opts ) ){
       return;
     }

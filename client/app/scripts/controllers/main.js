@@ -1,14 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name poliApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the poliApp
- */
 angular.module('poliApp')
-.controller('MainCtrl', function ($scope, $timeout, $http, api_host, Page) {
+.controller('MainCtrl', function ($scope, $timeout, $location, $http, api_host, Page) {
     $scope.setup_components = function() {
 
             jQuery('a[href*=#]').click(function() {
@@ -71,6 +64,9 @@ angular.module('poliApp')
 
     $scope.arrange_items = [];
     $scope.items = [];
+    $scope.heights = [
+        '390', '228', '125', '257', '173', '137', '246', '224'
+    ];
 
     $scope.entities = ['organizations', 'products', 'activities', 'centers'];
 
@@ -81,7 +77,9 @@ angular.module('poliApp')
 
         _.each($scope.entities , function(entity) {
             _.each(data[entity], function(item) {
-                $scope.items.push(item);
+                $scope.items.push(_.extend(item, {
+                    type: entity
+                }));
             });
         });
 
@@ -92,6 +90,22 @@ angular.module('poliApp')
         }, 2000);
     });
 
+    $scope.view = function(type, id) {
+        $location.path('/'+type+'/'+id);
+    };
+
+})
+.controller('organization-controller', function ($scope, $timeout, $http, $routeParams, api_host, Organization) {
+
+    $scope.organization = {};
+
+    Organization.get({
+        id: $routeParams.id
+    }, function(organization) {
+        $scope.organization = organization;
+        console.dir($scope.organization);
+    });
+    
 })
 .controller('EmprendimientoCtrl', function () {
 

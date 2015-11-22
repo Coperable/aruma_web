@@ -42,10 +42,9 @@ angular
         controller: 'EmprendimientoCtrl',
         controllerAs: 'emprendimiento'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/organizations/:id', {
+        templateUrl: 'views/emprendimiento.html',
+        controller: 'organization-controller'
       })
       .when('/aruma', {
         templateUrl: 'views/aruma.html',
