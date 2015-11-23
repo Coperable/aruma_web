@@ -11,6 +11,7 @@ use Response;
 use Illuminate\Support\Collection;
 use Aruma\User;
 use Aruma\Model\Media;
+use Aruma\Model\OrganizationMedia;
 
 class MediaController extends Controller {
 
@@ -30,10 +31,7 @@ class MediaController extends Controller {
     }
 
 
-    public function storeImage(Request $request, Media $media) {
-
-        $user = User::find($request['user']['sub']);
-        Log::info($user);
+    public function storeImage(Request $request) {
 
         if(!$request->hasFile('file')) { 
             return Response::json(['error' => 'No File Sent']);
@@ -54,11 +52,21 @@ class MediaController extends Controller {
             return Response::json(['error' => $v->errors()]);
         }
 
-        Log::info($request->file('file'));
+
+        $image = $this->processImageUpload($request);
+        return Response::json(['OK' => 1, 'filename' => $image->name, 'media_id' => $image->id]);
+    }
+
+
+    public function processImageUpload(Request $request) {
+        $user = User::find($request['user']['sub']);
+        $file = $request->file('file');
 
         $image = Media::create([
             'name' => $request->file('file')->getClientOriginalName(),
             'ext' => $request->file('file')->guessExtension(),
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
             'user_id' => $user->id,
             'type' => 'IMAGE'
         ]);
@@ -70,13 +78,12 @@ class MediaController extends Controller {
 
         Storage::disk('local')->put($filename,  File::get($file));
         Storage::disk('s3-aruma')->put('/aruma/' . $filename, file_get_contents($file), 'public');
+        
+        return $image;
 
-        return Response::json(['OK' => 1, 'filename' => $filename, 'media_id' => $image->id]);
     }
 
-    public function storeImageSlider(Request $request, Media $media) {
-
-        $user = User::find($request['user']['sub']);
+    public function addOrganizationMedia(Request $request, $organizationId) {
 
         if(!$request->hasFile('file')) { 
             return Response::json(['error' => 'No File Sent']);
@@ -97,45 +104,20 @@ class MediaController extends Controller {
             return Response::json(['error' => $v->errors()]);
         }
 
-        Log::info($request->file('file'));
+        $image = $this->processImageUpload($request);
 
-        $image = Media::create([
-            'name' => $request->file('file')->getClientOriginalName(),
-            'ext' => $request->file('file')->guessExtension(),
-            'user_id' => $user->id,
-            'type' => 'IMAGE'
-        ]);
-        
-        $filename = 'slider_'.$image->id . '.' . $image->ext;
+        //return Response::json(['OK' => 1, 'filename' => $filename, 'media_id' => $image->id]);
 
-        $image->name = $filename;
-        $image->save();
+        DB::transaction(function() use ($request, $image, $organizationId) {
+            $organizationMedia = OrganizationMedia::firstOrCreate([
+                'media_id' => $image->id,
+                'organization_id' => $organizationId
+            ]);
 
-        Storage::disk('local')->put($filename,  File::get($file));
-        Storage::disk('s3-slam')->put('/slam/' . $filename, file_get_contents($file), 'public');
-
-        return Response::json(['OK' => 1, 'filename' => $filename, 'media_id' => $image->id]);
+        });
+        return Response::json(['OK' => 1, 'filename' => $image->name, 'media_id' => $image->id]);
+ 
     }
-
-
-
-    public function videosSearch(Request $request) {
-        $params = array(
-            'q'             => $request->input('q'),
-            'type'          => 'video',
-            'part'          => 'id, snippet',
-            'maxResults'    => 10
-        );
-        return Youtube::searchAdvanced($params, true);
-    }
-
-    public function parseVideoId(Request $request, $youtubeId) {
-        $result = Youtube::getVideoInfo($youtubeId);
-        print_r($result);
-        return $result;
-    }
-
-
 
 }
 

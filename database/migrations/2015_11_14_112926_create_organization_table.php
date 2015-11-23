@@ -26,9 +26,13 @@ class CreateOrganizationTable extends Migration
             $table->longText('why_text')->nullable();
             $table->longText('how_text')->nullable();
 
+            $table->mediumText('instagram_hashtah')->nullable();
+            $table->mediumText('twitter_hashtah')->nullable();
+
             $table->mediumText('website')->nullable();
 
             $table->mediumText('main_picture')->nullable();
+            $table->integer('media_id')->unsigned();
 
             $table->boolean('remark')->default(false);
             $table->boolean('novelty')->default(false);

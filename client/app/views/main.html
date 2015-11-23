@@ -25,13 +25,13 @@
 
     </div>
 
-    <div class="toggle_map">
+    <!--div class="toggle_map">
         <h4>board <i class="fa fa-toggle-off"></i> mapa</h4>
-    </div>
+    </div-->
 
     <div class="mini_gap"></div>
 
-    <div class="grid">
+    <div class="grid" style="min-height: 620px">
         <div class="grid-sizer"></div>
 
         <div class="grid-item {{item.type}}" ng-class="{'novedades':'item.novelty'}" ng-repeat="item in arrange_items track by $index |limitTo: 8" ng-click="view(item.type, item.id)">

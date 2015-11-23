@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
  
 class Media extends Model {
 
-    protected $fillable = [ 'name', 'ext', 'type', 'user_id'];
+    protected $fillable = [ 'name', 'ext', 'type', 'user_id', 'title', 'description'];
 
     protected $table = 'medias';
 

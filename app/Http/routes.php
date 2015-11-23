@@ -24,6 +24,11 @@ Route::get('api/pages/home', ['uses' => 'PageController@home']);
 Route::resource('api/pages', 'PageController');
 
 Route::post('api/media/upload', ['middleware' => 'auth', 'uses' => 'MediaController@storeImage']);
+Route::post('api/media/organization/{organizationId}/upload', ['middleware' => 'auth', 'uses' => 'MediaController@addOrganizationMedia']);
+
+Route::get('api/organization/{id}/medias', ['uses' => 'OrganizationController@medias']);
+
+Route::post('api/organization/{organizationId}/mainPicture/{mediaId}', ['middleware' => 'auth', 'uses' => 'OrganizationController@setMainPicture']);
 
 Route::get('api/center/{centerId}/summary', ['uses' => 'CenterController@summary']);
 

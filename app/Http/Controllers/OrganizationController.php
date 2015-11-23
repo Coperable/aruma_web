@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Aruma\User;
 use Aruma\Model\Organization;
 use Aruma\Model\Media;
+use Aruma\Model\OrganizationMedia;
 use Aruma\Model\Location;
 use Aruma\Model\UserOrganization;
 
@@ -27,11 +28,16 @@ class OrganizationController extends Controller {
         $organization = Organization::find($id);
         $organization->activities;
         $organization->products;
+        $organization->medias;
         //$organization->location;
         $organization->users;
         return $organization;
 	}
 
+	public function medias($id) {
+        $organization = Organization::find($id);
+        return $organization->medias;
+	}
 
 	public function store(Request $request) {
         $user = User::find($request['user']['sub']);
@@ -49,12 +55,22 @@ class OrganizationController extends Controller {
             $organization->why_text = $request->input('why_text');
             $organization->how_text = $request->input('how_text');
             $organization->website = $request->input('website');
+            $organization->twitter_hashtag = $request->input('twitter_hashtag');
+            $organization->instagram_hashtag = $request->input('instagram_hashtag');
             $organization->main_picture = $request->input('main_picture');
-            $organization->title_legend = $request->input('title_legend') || '';
-            $organization->products_legend = $request->input('products_legend') || '';
+            $organization->media_id = $request->input('media_id');
+            $organization->title_legend = $request->input('title_legend');
+            $organization->products_legend = $request->input('products_legend');
 
             $organization->save();
                  
+            if($organization->media_id) {
+                $organizationMedia = OrganizationMedia::firstOrCreate([
+                    'media_id' => $organization->media_id,
+                    'organization_id' => $organization->id
+                ]);
+            }
+
         });
 
         return $organization;
@@ -76,8 +92,18 @@ class OrganizationController extends Controller {
             $organization->how_text = $request->input('how_text');
             $organization->website = $request->input('website');
             $organization->main_picture = $request->input('main_picture');
-            $organization->title_legend = $request->input('title_legend') || '';
-            $organization->products_legend = $request->input('products_legend') || '';
+            $organization->media_id = $request->input('media_id');
+            $organization->twitter_hashtag = $request->input('twitter_hashtag');
+            $organization->instagram_hashtag = $request->input('instagram_hashtag');
+            $organization->title_legend = $request->input('title_legend');
+            $organization->products_legend = $request->input('products_legend');
+
+            if($organization->media_id) {
+                $organizationMedia = OrganizationMedia::firstOrCreate([
+                    'media_id' => $organization->media_id,
+                    'organization_id' => $organization->id
+                ]);
+            }
 
             Log::info($organization);
             $organization->save();
@@ -128,19 +154,17 @@ class OrganizationController extends Controller {
         return $result;
     }
 
-	public function addActivity(Request $request, $organizationId) {
+	public function setMainPicture(Request $request, $organizationId, $mediaId) {
         $user = User::find($request['user']['sub']);
         $organization = Organization::find($organizationId);
-        DB::transaction(function() use ($request, $organization, $user) {
-
-            //crear actividad
-
+        $media = Media::find($mediaId);
+        DB::transaction(function() use ($request, $organization, $media) {
+            $organization->main_picture = $media->name;
+            $organization->save();
         });
- 
-        return Media::where('organization_id', $organization->id)->where('type', 'VIDEO')->get();
 
+        return $media;
     }
-
 
 }
 
