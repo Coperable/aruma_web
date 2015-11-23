@@ -1,0 +1,62 @@
+<div class="full_screen" id="portada">
+    <div class="imagen_portada" ng-style="{'background-image': 'url(http://images.collab-dev.com/aruma/'+center.main_picture+')'}" ng-style="{'background-size: cover !important;'}" ></div>
+
+    <div class="texto_portada">
+          
+        <h1>Aruma <small>LAB</small></h1>
+        <h4>{{center.description}}</h4>
+    </div>
+
+</div>
+
+<div id="inicio"></div>
+
+<div class="mini_gap"></div>
+
+<div>
+
+    <div class="button-group filters-button-group">
+
+        <button class="btn_filtro is-checked" data-filter="*">todo</button>
+        <button class="btn_filtro" data-filter=".products">productos</button>
+        <button class="btn_filtro" data-filter=".organizations">emprendimientos</button>
+        <button class="btn_filtro" data-filter=".activities">actividades</button>
+        <button class="btn_filtro" data-filter=".centers">laboratorio</button>
+
+    </div>
+
+    <!--div class="toggle_map">
+        <h4>board <i class="fa fa-toggle-off"></i> mapa</h4>
+    </div-->
+
+    <div class="mini_gap"></div>
+
+    <div class="grid" style="min-height: 620px">
+        <div class="grid-sizer"></div>
+
+        <div class="grid-item {{item.type}}" ng-class="{'novedades':'item.novelty'}" ng-repeat="item in arrange_items track by $index |limitTo: 8" ng-click="view(item.type, item.id)">
+            <img ng-src="http://images.collab-dev.com/trim/336x257/smart/aruma/{{item.main_picture}}">
+            <div class="caption"><div>
+                <h2>{{item.name}}</h2>
+                <span>{{item.description}}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="sec_info">
+
+    <div class="info_inner">
+        <h1>Estamos en contacto</h1>
+        <div class="info_botones">
+            <button class="btn_action">Newsletter</button>
+            <button class="btn_nav">Escribinos</button>
+        </div>
+    </div>
+
+</div>
+
