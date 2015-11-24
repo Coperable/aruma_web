@@ -18,8 +18,12 @@ class Activity extends Model {
         return $this->belongsTo('Aruma\Model\Center');
     }
 
+    public function location() {
+        return $this->belongsTo('Aruma\Model\Location');
+    }
+
     public function medias() {
-        return $this->belongsToMany('Aruma\Model\Medias', 'products_medias');
+        return $this->belongsToMany('Aruma\Model\Media', 'activities_medias');
     }
 }
 

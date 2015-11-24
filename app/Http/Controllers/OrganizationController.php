@@ -51,6 +51,9 @@ class OrganizationController extends Controller {
             $organization->main_picture = $request->input('main_picture');
 
             $organization->slogan = $request->input('slogan');
+            $organization->what_for_title = $request->input('what_for_title');
+            $organization->why_title = $request->input('why_title');
+            $organization->how_title = $request->input('how_title');
             $organization->what_for_text = $request->input('what_for_text');
             $organization->why_text = $request->input('why_text');
             $organization->how_text = $request->input('how_text');
@@ -87,6 +90,9 @@ class OrganizationController extends Controller {
             $organization->main_picture = $request->input('main_picture');
 
             $organization->slogan = $request->input('slogan');
+            $organization->what_for_title = $request->input('what_for_title');
+            $organization->why_title = $request->input('why_title');
+            $organization->how_title = $request->input('how_title');
             $organization->what_for_text = $request->input('what_for_text');
             $organization->why_text = $request->input('why_text');
             $organization->how_text = $request->input('how_text');

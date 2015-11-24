@@ -118,14 +118,8 @@ angular.module('poliApp')
 .controller('organization-controller', function ($scope, $timeout, $http, $routeParams, api_host, Organization) {
 
     $scope.organization = {};
-    $scope.handleTweets = function(_tweets) {
+    $scope.handleTweets = function(tweets) {
         console.log('tweets');
-        console.dir(tweets);
-        var tweets = [
-            'hola guapo',
-            'perdió scioli',
-            'gano la democracio'
-        ]; 
         var x = tweets.length;
         var n = 0;
         var element = jQuery('.sec_twitter');
@@ -139,12 +133,15 @@ angular.module('poliApp')
         return html;
     };
 
-    console.dir(window.loading_screen);
-    
+    $scope.medias = [];
+
     Organization.get({
         id: $routeParams.id
     }, function(organization) {
         $scope.organization = organization;
+        $scope.medias = _.filter($scope.organization.medias, function(media) {
+            return media.name != $scope.organization.main_picture;
+        });
 
         $timeout(function() {
             jQuery('#carousel-organization').imagesLoaded().always( function() {
@@ -163,7 +160,54 @@ angular.module('poliApp')
             }
             if($scope.organization.twitter_hashtag) {
                 twitterFetcher.fetch({
-                    id: $scope.twitter_hashtag, 
+                    id: $scope.organization.twitter_hashtag, 
+                    domId: '', 
+                    maxTweets: 5,
+                    enableLinks: true,
+                    showUser:true, 
+                    showTime: true, 
+                    dateFunction: '', 
+                    showRetweet: false,
+                    customCallback:  $scope.handleTweets
+                });
+            }
+            jQuery('#carouser-organization').carousel({
+                interval: 2000
+            })
+        }, 1000);
+
+    });
+    
+})
+.controller('activity-controller', function ($scope, $timeout, $http, $routeParams, api_host, Activity) {
+
+    $scope.activity = {};
+
+    $scope.medias = [];
+
+    Activity.get({
+        id: $routeParams.id
+    }, function(activity) {
+        $scope.activity = activity;
+        $scope.medias = _.filter($scope.activity.medias, function(media) {
+            return media.name != $scope.activity.main_picture;
+        });
+
+        window.loading_screen.finish(); 
+
+        $timeout(function() {
+            if($scope.activity.instagram_hashtag) {
+                jQuery('.activity-instafeedtag').each(function() {
+                    jQuery(this).children('.grilla_instagram').spectragram('getRecentTagged', {
+                        query: $scope.organization.instagram_hashtag,
+                        max: 12,
+                        wrapEachWith: '<div class="col-sm-4"></div>'
+                    });
+                });
+            }
+            if($scope.activity.twitter_hashtag) {
+                twitterFetcher.fetch({
+                    id: $scope.activity.twitter_hashtag, 
                     domId: '', 
                     maxTweets: 5,
                     enableLinks: true,

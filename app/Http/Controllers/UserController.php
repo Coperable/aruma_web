@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Config;
 use Validator;
+use Storage;
+use Hash;
 use Log;
 use DB;
 use JWT;
@@ -64,12 +66,38 @@ class UserController extends Controller {
         );
     }
 
+    public function update(Request $request) {
+        $user = User::find($request['user']['sub']);
+
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+
+        $user->save();
+
+        return response()->json($user);
+    }
+
+
     public function updateUser(Request $request) {
         $user = User::find($request['user']['sub']);
 
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-        $user->save();
+
+        $current_password =  $request->input('current_password');
+        $password =  $request->input('password');
+
+        if(isset($current_password) && isset($password) ) {
+
+            if (Hash::check($current_password, $user->password)) {
+                $user->password = Hash::make($request->input('password'));
+                $user->save();
+            } else {
+                return response()->json(['message' => 'user_current_password_wrong'], 400);
+            }
+        } else {
+            $user->save();
+        }
 
         $token = $this->createToken($user);
 

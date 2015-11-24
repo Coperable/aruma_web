@@ -22,23 +22,26 @@ class CreateOrganizationTable extends Migration
 
             $table->longText('description')->nullable();
             $table->mediumText('slogan')->nullable();
+            $table->string('what_for_title')->nullable();
+            $table->string('why_title')->nullable();
+            $table->string('how_title')->nullable();
             $table->longText('what_for_text')->nullable();
             $table->longText('why_text')->nullable();
             $table->longText('how_text')->nullable();
 
-            $table->mediumText('instagram_hashtah')->nullable();
-            $table->mediumText('twitter_hashtah')->nullable();
+            $table->mediumText('instagram_hashtag')->nullable();
+            $table->mediumText('twitter_hashtag')->nullable();
 
             $table->mediumText('website')->nullable();
 
             $table->mediumText('main_picture')->nullable();
             $table->integer('media_id')->unsigned();
 
-            $table->boolean('remark')->default(false);
+            $table->boolean('remark')->default(true);
             $table->boolean('novelty')->default(false);
 
-            $table->string('title_legend');
-            $table->string('products_legend');
+            $table->string('title_legend')->nullable();
+            $table->string('products_legend')->nullable();
 
             $table->timestamps();
         });

@@ -35,7 +35,7 @@
         <div class="grid-sizer"></div>
 
         <div class="grid-item {{item.type}}" ng-class="{'novedades':'item.novelty'}" ng-repeat="item in arrange_items track by $index |limitTo: 8" ng-click="view(item.type, item.id)">
-            <img ng-src="http://images.collab-dev.com/trim/336x{{heights[$index]}}/smart/aruma/{{item.main_picture}}">
+            <img ng-src="http://images.collab-dev.com/trim/336x{{heights[$index]}}/smart/aruma/{{item.main_picture}}" style="width:100%; height: 100%">
             <div class="caption"><div>
                 <h2>{{item.name}}</h2>
                 <span>{{item.description}}</span>

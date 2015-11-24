@@ -25,6 +25,8 @@ class ActivityController extends Controller {
 
 	public function show($id) {
         $activity = Activity::find($id);
+        $activity->medias;
+        $activity->location;
         return $activity;
 	}
 

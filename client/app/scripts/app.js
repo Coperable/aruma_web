@@ -46,6 +46,11 @@ angular
         templateUrl: 'views/emprendimiento.html',
         controller: 'organization-controller'
       })
+      .when('/activities/:id', {
+        templateUrl: 'views/actividad.html',
+        controller: 'activity-controller'
+      })
+
       .when('/aruma', {
         templateUrl: 'views/aruma.html',
         controller: 'ArumaCtrl'
@@ -53,4 +58,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+      moment.locale('es');
+
+  })
+.filter('moment', function() {
+    return function(dateString, format) {
+        return moment(dateString).format(format);
+    };
+});

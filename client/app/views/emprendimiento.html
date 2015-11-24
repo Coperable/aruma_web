@@ -13,9 +13,9 @@
 		<div class="centered_90 centrado completo">
 			<div class="tabs_lookeadas">
 			  	<ul class="nav nav-tabs" role="tablist">
-				    <li role="presentation" class="active"><a data-target="#tab_paraQue" aria-controls="tab_paraQue" role="tab" data-toggle="tab">Para qué?</a></li>
-				    <li role="presentation"><a data-target="#tab_porQue" aria-controls="tab_porQue" role="tab" data-toggle="tab">Por qué?</a></li>
-				    <li role="presentation"><a data-target="#tab_como" aria-controls="tab_como" role="tab" data-toggle="tab">Cómo?</a></li>
+				    <li role="presentation" class="active"><a data-target="#tab_paraQue" aria-controls="tab_paraQue" role="tab" data-toggle="tab">{{organization.what_for_title}}</a></li>
+				    <li role="presentation"><a data-target="#tab_porQue" aria-controls="tab_porQue" role="tab" data-toggle="tab">{{organization.why_title}}</a></li>
+				    <li role="presentation"><a data-target="#tab_como" aria-controls="tab_como" role="tab" data-toggle="tab">{{organization.how_title}}</a></li>
 			  	</ul>
 		  	</div>
 
@@ -50,7 +50,7 @@
 	<div class="col-sm-6" style="min-height: 489px">
         <div id="carousel-organization" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <div class="item" ng-repeat="media in organization.medias" ng-class="{active: $first}">
+                <div class="item" ng-repeat="media in medias" ng-class="{active: $first}">
                     <img ng-src="http://images.collab-dev.com/full-fit-in/489x489/smart/aruma/{{media.name}}" width="100%">
                 </div>
             </div>
@@ -63,9 +63,6 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        <!--
-		<img src="/images/haulani/hau_cover02.jpg" width="100%">
-        -->
 	</div>
 
 </div>
