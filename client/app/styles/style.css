@@ -77,6 +77,8 @@ body {
 .full_screen .imagen_portada {
   width: 100%;
   height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -112,12 +114,66 @@ body {
 }
 .texto_portada h4 {
   font-family: 'Lato', sans-serif;
-  font-size: 10pt;
+  font-size: 14pt;
   font-weight: 300;
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
   padding: 0px 20px;
+}
+.full_width {
+  width: 100%;
+  text-align: center;
+  /* align the inline(-block) elements horizontally */
+  position: relative;
+}
+.full_width img {
+  width: 100%;
+}
+.full_width .degradado {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background: transparent linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.65) 100%) repeat scroll 0% 0%;
+}
+.modal-header {
+  border-bottom: 0px solid #E5E5E5;
+}
+.modal-footer {
+  border-top: 0px solid #E5E5E5;
+}
+.modal-dialog {
+  width: 80%;
+}
+.info_evento span {
+  display: block;
+  margin: 0px 20px;
+  font-family: Gotham_Md;
+  font-size: 14pt;
+  letter-spacing: 1pt;
+  text-transform: uppercase;
+}
+.info_evento .fecha {
+  color: #59BC6C;
+}
+.info_evento .hora,
+.info_evento .lugar {
+  color: #999;
+}
+.info_evento .lugar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.info_evento .owner {
+  text-transform: none;
+}
+.info_evento p {
+  display: block;
+  margin: 40px 20px 0px 20px;
+}
+.row.valign {
+  display: flex;
+  align-items: center;
 }
 footer {
   background-color: #282828;
@@ -316,7 +372,7 @@ a:focus {
   color: #ffffff;
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 10px;
+  font-size: 13px;
   letter-spacing: 1px;
   /*
 	&.active {
@@ -408,7 +464,7 @@ a:focus {
 .grid-item .caption span {
   margin: 3px 0;
   line-height: 1;
-  font-size: 9px;
+  font-size: 12px;
   font-family: Gotham;
   text-transform: uppercase;
   color: #ffffff;
@@ -490,10 +546,13 @@ a:focus {
   width: 100%;
 }
 .tarjeta_producto p {
-  font-size: 10px;
+  font-size: 12px;
   padding: 0 20px;
   margin-top: 10px;
   line-height: 1.6;
+}
+.tarjeta_producto h4 {
+  padding: 0 20px;
 }
 .donde_tit {
   background-color: #e6b800;
@@ -515,7 +574,7 @@ a:focus {
 .sec_twitter {
   background-color: #282828;
   text-align: center;
-  padding: 20px 0;
+  padding: 40px 0;
 }
 .sec_twitter i {
   display: block;
@@ -692,4 +751,19 @@ a:focus {
   .col-lg-bottom {
     vertical-align: bottom;
   }
+}
+.widget ul:last-child,
+.widget p:last-child {
+  margin-bottom: 0;
+}
+.widget .instafeed li {
+  width: 33.3333%;
+  display: inline-block;
+  padding: 0 4px 4px 0;
+}
+.widget .instafeed li img {
+  max-width: 100%;
+}
+.widget .instafeed li:nth-of-type(n+7) {
+  display: none;
 }

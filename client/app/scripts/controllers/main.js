@@ -69,7 +69,8 @@ angular.module('poliApp')
         '390', '189', '150', '246', '257', '230', '224', '173'
     ];
 
-    $scope.entities = ['organizations', 'products', 'activities', 'centers'];
+    //$scope.entities = ['organizations', 'products', 'activities', 'centers'];
+    $scope.entities = ['organizations', 'activities', 'centers'];
 
     $http.get(api_host+'/api/pages/home').success(function(page) {
         $scope.home = page;
