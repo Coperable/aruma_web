@@ -11,6 +11,7 @@ use Aruma\Model\Activity;
 use Aruma\Model\Location;
 use Aruma\Model\Center;
 use Aruma\Model\Organization;
+use Aruma\Model\ActivityMedia;
 
 class ActivityController extends Controller {
 
@@ -28,6 +29,11 @@ class ActivityController extends Controller {
         $activity->medias;
         $activity->location;
         return $activity;
+	}
+
+	public function medias($id) {
+        $activity = Activity::find($id);
+        return $activity->medias;
 	}
 
 	public function store(Request $request) {
@@ -50,8 +56,8 @@ class ActivityController extends Controller {
 
             $activity->location_id = $location->id;
 
-            $activity->twitter_hashtag = $request->input('twitter_link');
-            $activity->instagram_hashtag = $request->input('instagram_link');
+            $activity->twitter_hashtag = $request->input('twitter_hashtah');
+            $activity->instagram_hashtag = $request->input('instagram_hashtag');
 
             $activity->organization_id = $request->input('organization_id');
             $activity->center_id = $request->input('center_id');
@@ -62,6 +68,16 @@ class ActivityController extends Controller {
             $activity->center_activity = $request->input('center_activity');
 
             $activity->save();
+
+            if($activity->media_id) {
+                $activityMedia = ActivityMedia::firstOrCreate([
+                    'media_id' => $activity->media_id,
+                    'activity_id' => $activity->id
+                ]);
+            }
+
+
+
         });
 
         return $activity;
@@ -71,9 +87,15 @@ class ActivityController extends Controller {
         $activity = Activity::find($id);
         DB::transaction(function() use ($request, $activity) {
 
-            $geo = $this->processGeoValue($request->input('location'));
-            $location = Location::firstOrCreate($geo);
-            $location->save();
+            if($request->has('location')) {
+                $pregeo = $request->input('location');
+                if(isset($pregeo['address_components'])) {
+                    $geo = $this->processGeoValue($pregeo);
+                    $location = Location::firstOrCreate($geo);
+                    $location->save();
+                    $activity->location_id = $location->id;
+                }
+            }
 
             $activity->title = $request->input('title');
             $activity->description = $request->input('description');
@@ -82,12 +104,11 @@ class ActivityController extends Controller {
 
             $arr = explode(".", $request->input('event_date'), 2);
             $event_date = str_replace("T", " ", $arr[0]);
-            $location->event_date = Carbon::createFromFormat('Y-m-d H:i:s', $event_date);
+            $activity->event_date = Carbon::createFromFormat('Y-m-d H:i:s', $event_date);
 
-            $activity->location_id = $location->id;
 
-            $activity->twitter_hashtag = $request->input('twitter_link');
-            $activity->instagram_hashtag = $request->input('instagram_link');
+            $activity->twitter_hashtag = $request->input('twitter_hashtah');
+            $activity->instagram_hashtag = $request->input('instagram_hashtag');
 
             $activity->organization_id = $request->input('organization_id');
             $activity->center_id = $request->input('center_id');
@@ -98,6 +119,14 @@ class ActivityController extends Controller {
             $activity->center_activity = $request->input('center_activity');
 
             $activity->save();
+
+            if($activity->media_id) {
+                $activityMedia = ActivityMedia::firstOrCreate([
+                    'media_id' => $activity->media_id,
+                    'activity_id' => $activity->id
+                ]);
+            }
+
 
         });
 

@@ -25,10 +25,14 @@ Route::resource('api/pages', 'PageController');
 
 Route::post('api/media/upload', ['middleware' => 'auth', 'uses' => 'MediaController@storeImage']);
 Route::post('api/media/organization/{organizationId}/upload', ['middleware' => 'auth', 'uses' => 'MediaController@addOrganizationMedia']);
+Route::post('api/media/activity/{activityId}/upload', ['middleware' => 'auth', 'uses' => 'MediaController@addActivityMedia']);
 
 Route::get('api/organization/{id}/medias', ['uses' => 'OrganizationController@medias']);
+Route::get('api/activity/{id}/medias', ['uses' => 'ActivityController@medias']);
 
 Route::post('api/organization/{organizationId}/mainPicture/{mediaId}', ['middleware' => 'auth', 'uses' => 'OrganizationController@setMainPicture']);
+Route::post('api/center/{centerId}/organization/{organizationId}', ['middleware' => 'auth', 'uses' => 'CenterController@addOrganization']);
+Route::post('api/center/{centerId}/remove/organization/{organizationId}', ['middleware' => 'auth', 'uses' => 'CenterController@removeOrganization']);
 
 Route::get('api/center/{centerId}/summary', ['uses' => 'CenterController@summary']);
 

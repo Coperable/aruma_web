@@ -10,6 +10,8 @@ use Aruma\User;
 use Aruma\Model\Center;
 use Aruma\Model\Location;
 use Aruma\Model\Competition;
+use Aruma\Model\CenterOrganization;
+use Aruma\Model\Organization;
 
 class CenterController extends Controller {
 
@@ -167,6 +169,39 @@ class CenterController extends Controller {
         Log::info($result);
         return $result;
     }
+
+    public function addOrganization(Request $request, $centerId, $organizationId) {
+
+        DB::transaction(function() use ($request, $centerId, $organizationId) {
+            $activityMedia = CenterOrganization::firstOrCreate([
+                'center_id' => $centerId,
+                'organization_id' => $organizationId
+            ]);
+
+        });
+
+        $center = Center::find($centerId);
+        $organizations = $center->organizations;
+    
+        return $organizations;
+
+    }
+
+    public function removeOrganization(Request $request, $centerId, $organizationId) {
+
+        DB::transaction(function() use ($request, $centerId, $organizationId) {
+
+            CenterOrganization::where('center_id', $centerId)->where('organization_id', $organizationId)->delete();
+
+        });
+
+        $center = Center::find($centerId);
+        $organizations = $center->organizations;
+    
+        return $organizations;
+
+    }
+
 
 
 }

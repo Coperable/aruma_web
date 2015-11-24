@@ -41,11 +41,11 @@
 	</div>
 
 
-	<div class="col-sm-6" style="min-height: 489px; width: 100%">
+	<div class="col-sm-6" style="min-height: 489px; max-height: 489px; width: 100%">
         <div id="carousel-activity" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <div class="item" ng-repeat="media in medias" ng-class="{active: $first}">
-                    <img ng-src="http://images.collab-dev.com/full-fit-in/489x489/smart/aruma/{{media.name}}" width="100%">
+                    <img ng-src="http://images.collab-dev.com/489x489/smart/aruma/{{media.name}}" width="100%">
                 </div>
             </div>
             <a class="left carousel-control" data-target="#carousel-activity" role="button" data-slide="prev">

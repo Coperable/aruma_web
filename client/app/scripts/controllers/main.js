@@ -199,7 +199,7 @@ angular.module('poliApp')
             if($scope.activity.instagram_hashtag) {
                 jQuery('.activity-instafeedtag').each(function() {
                     jQuery(this).children('.grilla_instagram').spectragram('getRecentTagged', {
-                        query: $scope.organization.instagram_hashtag,
+                        query: $scope.activity.instagram_hashtag,
                         max: 12,
                         wrapEachWith: '<div class="col-sm-4"></div>'
                     });
@@ -218,7 +218,7 @@ angular.module('poliApp')
                     customCallback:  $scope.handleTweets
                 });
             }
-            jQuery('#carouser-organization').carousel({
+            jQuery('#carouser-activity').carousel({
                 interval: 2000
             })
         }, 1000);

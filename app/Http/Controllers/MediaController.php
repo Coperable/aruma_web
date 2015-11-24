@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Aruma\User;
 use Aruma\Model\Media;
 use Aruma\Model\OrganizationMedia;
+use Aruma\Model\ActivityMedia;
 
 class MediaController extends Controller {
 
@@ -118,6 +119,44 @@ class MediaController extends Controller {
         return Response::json(['OK' => 1, 'filename' => $image->name, 'media_id' => $image->id]);
  
     }
+
+
+    public function addActivityMedia(Request $request, $activityId) {
+
+        if(!$request->hasFile('file')) { 
+            return Response::json(['error' => 'No File Sent']);
+        }
+
+        if(!$request->file('file')->isValid()) {
+            return Response::json(['error' => 'File is not valid']);
+        }
+
+        $file = $request->file('file');
+
+        $v = Validator::make(
+            $request->all(),
+            ['file' => 'required|mimes:jpeg,jpg,png|max:8000']
+        );
+
+        if($v->fails()) {
+            return Response::json(['error' => $v->errors()]);
+        }
+
+        $image = $this->processImageUpload($request);
+
+        //return Response::json(['OK' => 1, 'filename' => $filename, 'media_id' => $image->id]);
+
+        DB::transaction(function() use ($request, $image, $activityId) {
+            $activityMedia = ActivityMedia::firstOrCreate([
+                'media_id' => $image->id,
+                'activity_id' => $activityId
+            ]);
+
+        });
+        return Response::json(['OK' => 1, 'filename' => $image->name, 'media_id' => $image->id]);
+ 
+    }
+
 
 }
 

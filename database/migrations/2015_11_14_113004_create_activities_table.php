@@ -29,6 +29,7 @@ class CreateActivitiesTable extends Migration {
             $table->foreign('location_id')->references('id')->on('locations');
 
             $table->mediumText('main_picture')->nullable();
+            $table->integer('media_id')->unsigned();
 
             $table->string('twitter_hashtag')->nullable();
             $table->string('instagram_hashtag')->nullable();
