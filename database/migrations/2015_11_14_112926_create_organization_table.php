@@ -35,7 +35,7 @@ class CreateOrganizationTable extends Migration
             $table->mediumText('website')->nullable();
 
             $table->mediumText('main_picture')->nullable();
-            $table->integer('media_id')->unsigned();
+            $table->integer('media_id')->unsigned()->nullable();
 
             $table->boolean('remark')->default(true);
             $table->boolean('novelty')->default(false);
