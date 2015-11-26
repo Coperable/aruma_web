@@ -1,7 +1,7 @@
 <div class="full_screen" id="portada">
     <div class="imagen_portada" ng-style="{'background-image': 'url(http://images.collab-dev.com/aruma/'+organization.main_picture+')'}" ng-style="{'background-size: cover !important;'}" ></div>
 
-    <div class="texto_portada" ng-if="organization.show_title">
+    <div class="texto_portada" ng-if="organization.show_title == 1">
         <h1>{{organization.name}}</h1>
         <h4>{{organization.description}}</h4>
     </div>
