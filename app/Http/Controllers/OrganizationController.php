@@ -47,6 +47,11 @@ class OrganizationController extends Controller {
             $organization->user_id = $user->id;
 
             $organization->name = $request->input('name');
+            $organization->slug = $this->slugify($organization->name);
+
+            $organization->show_title = $request->has('show_title') ? $request->input('show_title') : true;
+            $organization->is_center = $request->has('is_center') ? $request->input('is_center') : false;
+
             $organization->description = $request->input('description');
             $organization->main_picture = $request->input('main_picture');
 
@@ -60,7 +65,6 @@ class OrganizationController extends Controller {
             $organization->website = $request->input('website');
             $organization->twitter_hashtag = $request->input('twitter_hashtag');
             $organization->instagram_hashtag = $request->input('instagram_hashtag');
-            $organization->main_picture = $request->input('main_picture');
             $organization->media_id = $request->input('media_id');
             $organization->title_legend = $request->input('title_legend');
             $organization->products_legend = $request->input('products_legend');
@@ -86,6 +90,10 @@ class OrganizationController extends Controller {
             $organization->user_id = $user->id;
 
             $organization->name = $request->input('name');
+            $organization->slug = $this->slugify($organization->name);
+            $organization->show_title = $request->has('show_title') ? $request->input('show_title') : true;
+            $organization->is_center = $request->has('is_center') ? $request->input('is_center') : false;
+
             $organization->description = $request->input('description');
             $organization->main_picture = $request->input('main_picture');
 
@@ -97,7 +105,6 @@ class OrganizationController extends Controller {
             $organization->why_text = $request->input('why_text');
             $organization->how_text = $request->input('how_text');
             $organization->website = $request->input('website');
-            $organization->main_picture = $request->input('main_picture');
             $organization->media_id = $request->input('media_id');
             $organization->twitter_hashtag = $request->input('twitter_hashtag');
             $organization->instagram_hashtag = $request->input('instagram_hashtag');
@@ -170,6 +177,20 @@ class OrganizationController extends Controller {
         });
 
         return $media;
+    }
+
+    static public function slugify($text) { 
+        $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+        $text = trim($text, '-');
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        $text = strtolower($text);
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 
 }

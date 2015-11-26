@@ -54,10 +54,13 @@ class PageController extends Controller {
             $page->main_picture = $request->input('main_picture');
             $page->is_home = $request->input('is_home');
             $page->twitter_link = $request->input('twitter_link');
-            $page->facebook_link = $request->input('facebook_link');
             $page->instagram_link = $request->input('instagram_link');
+            $page->facebook_link = $request->input('facebook_link');
             $page->vimeo_link = $request->input('vimeo_link');
             $page->pinterest_link = $request->input('pinterest_link');
+            $page->twitter_hashtag = $request->input('twitter_hashtag');
+            $page->instagram_hashtag = $request->input('instagram_hashtag');
+            $page->instagram_username = $request->input('instagram_username');
 
             $page->save();
         });
@@ -79,6 +82,10 @@ class PageController extends Controller {
             $page->instagram_link = $request->input('instagram_link');
             $page->vimeo_link = $request->input('vimeo_link');
             $page->pinterest_link = $request->input('pinterest_link');
+
+            $page->twitter_hashtag = $request->input('twitter_hashtag');
+            $page->instagram_hashtag = $request->input('instagram_hashtag');
+            $page->instagram_username = $request->input('instagram_username');
 
             $page->save();
         });

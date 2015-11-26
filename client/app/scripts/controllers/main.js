@@ -116,7 +116,7 @@ angular.module('poliApp')
 
     
 })
-.controller('organization-controller', function ($scope, $timeout, $http, $routeParams, api_host, Organization) {
+.controller('organization-controller', function ($scope, $timeout, $http, $routeParams, api_host, Organization, instagram_token, instagram_client_id) {
 
     $scope.organization = {};
     $scope.handleTweets = function(tweets) {
@@ -151,6 +151,11 @@ angular.module('poliApp')
 
 
             if($scope.organization.instagram_hashtag) {
+                jQuery.fn.spectragram.accessData = {
+                    accessToken: instagram_token,
+                    clientID: instagram_client_id
+                };
+
                 jQuery('.organization-instafeedtag').each(function() {
                     jQuery(this).children('.grilla_instagram').spectragram('getRecentTagged', {
                         query: $scope.organization.instagram_hashtag,
@@ -227,17 +232,31 @@ angular.module('poliApp')
     });
     
 })
-.controller('footer-controller', function ($scope) {
+.controller('footer-controller', function ($scope, $http, $timeout, $sce, api_host, instagram_token, instagram_client_id) {
+    $scope.home = {};
+
+    $scope.tweets = [];
+    $scope.handleTweets = function(tweets) {
+        $scope.tweets = tweets;
+        $scope.$apply();
+    };
+
+    $scope.tweetText = function(tweet) {
+        return $sce.trustAsHtml(tweet);
+    };
+
     $scope.setup_components = function() {
-        console.log('spectagram');
+        //accessToken: '1406933036.fedaafa.feec3d50f5194ce5b705a1f11a107e0b',
+        //clientID: 'fedaafacf224447e8aef74872d3820a1'
+
         jQuery.fn.spectragram.accessData = {
-            accessToken: '1406933036.fedaafa.feec3d50f5194ce5b705a1f11a107e0b',
-            clientID: 'fedaafacf224447e8aef74872d3820a1'
+            accessToken: instagram_token,
+            clientID: instagram_client_id
         };
 
         jQuery('.instafeed').each(function() {
             jQuery(this).children('ul').spectragram('getUserFeed', {
-                query: $(this).attr('data-user-name'),
+                query: $scope.home.instagram_username,
                 max: 12
             });
         });
@@ -247,8 +266,30 @@ angular.module('poliApp')
                 max: 12
             });
         });
+
+        if($scope.home.twitter_hashtag) {
+            twitterFetcher.fetch({
+                id: $scope.home.twitter_hashtag, 
+                domId: '', 
+                maxTweets: 5,
+                enableLinks: true,
+                showUser:true, 
+                showTime: true, 
+                dateFunction: '', 
+                showRetweet: false,
+                customCallback:  $scope.handleTweets
+            });
+        }
     };
-    $scope.setup_components();
+
+    $http.get(api_host+'/api/pages/home').success(function(page) {
+        $scope.home = page;
+        $timeout(function() {
+            $scope.setup_components();
+        }, 2000);
+    });
+
+
 })
 
 .controller('EmprendimientoCtrl', function () {

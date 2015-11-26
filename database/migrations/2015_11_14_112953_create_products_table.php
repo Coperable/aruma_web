@@ -14,6 +14,8 @@ class CreateProductsTable extends Migration {
 
             $table->string('name');
 
+            $table->enum('type', ['PRODUCT', 'SERVICE'])->default('PRODUCT');
+
             $table->longText('description')->nullable();
             $table->longText('details')->nullable();
 

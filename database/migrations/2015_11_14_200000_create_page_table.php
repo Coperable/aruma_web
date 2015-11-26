@@ -22,6 +22,10 @@ class CreatePageTable extends Migration {
             $table->mediumText('vimeo_link')->nullable();
             $table->mediumText('pinterest_link')->nullable();
 
+            $table->mediumText('twitter_hashtag')->nullable();
+            $table->mediumText('instagram_username')->nullable();
+            $table->mediumText('instagram_hashtag')->nullable();
+
             $table->timestamps();
         });
 

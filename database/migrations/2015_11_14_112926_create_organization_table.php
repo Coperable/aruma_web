@@ -19,6 +19,10 @@ class CreateOrganizationTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->string('name');
+            $table->string('slug');
+
+            $table->boolean('show_title')->default(true);
+            $table->boolean('is_center')->default(false);
 
             $table->longText('description')->nullable();
             $table->mediumText('slogan')->nullable();

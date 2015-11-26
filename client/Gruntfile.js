@@ -486,7 +486,9 @@ module.exports = function (grunt) {
             wrap: '"use strict";\n\n{%= __ngModule %}',
             space: '  ',
             constants: {
-                api_host: '<%= cnf.api_host %>'
+                api_host: '<%= cnf.api_host %>',
+                instagram_token: '<%= cnf.instagram_token%>',
+                instagram_client_id: '<%= cnf.instagram_client_id%>'
             },
             values: {
                 debug: true
