@@ -18,6 +18,7 @@ Route::resource('api/centers', 'CenterController');
 Route::resource('api/organizations', 'OrganizationController');
 Route::resource('api/products', 'ProductController');
 Route::resource('api/activities', 'ActivityController');
+Route::resource('api/geopoints', 'GeoPointController');
 Route::resource('api/roles', 'RoleController');
 
 Route::get('api/pages/home', ['uses' => 'PageController@home']);
@@ -27,6 +28,7 @@ Route::post('api/media/upload', ['middleware' => 'auth', 'uses' => 'MediaControl
 Route::post('api/media/organization/{organizationId}/upload', ['middleware' => 'auth', 'uses' => 'MediaController@addOrganizationMedia']);
 Route::post('api/media/activity/{activityId}/upload', ['middleware' => 'auth', 'uses' => 'MediaController@addActivityMedia']);
 
+Route::get('api/organization/{id}/geopoints', ['uses' => 'OrganizationController@geopoints']);
 Route::get('api/organization/{id}/medias', ['uses' => 'OrganizationController@medias']);
 Route::get('api/activity/{id}/medias', ['uses' => 'ActivityController@medias']);
 

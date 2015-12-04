@@ -139,11 +139,12 @@ class ActivityController extends Controller {
 	}
 
     public function processGeoValue($geo) {
+        Log::info($geo);
         $result = array(
             'formatted_address' => $geo['formatted_address'],
             'google_id' => $geo['id'],
             'place_id' => $geo['place_id'],
-            'name' => $geo['name'],
+            'name' => $geo['name']
         );
         $values_allowed = array(
             'sublocality' => true,
@@ -168,10 +169,15 @@ class ActivityController extends Controller {
                 }
             }
         }
+        $coordinates = $geo['coordinates'];
+        if(is_array($coordinates)) {
+            $result['latitude'] = $coordinates['lat'];
+            $result['longitude'] = $coordinates['lng'];
+        }
     
+        Log::info($result);
         return $result;
     }
-
 
 }
 

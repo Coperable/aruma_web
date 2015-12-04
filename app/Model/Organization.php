@@ -14,6 +14,10 @@ class Organization extends Model {
         return $this->hasMany('Aruma\Model\Activity');
     }
 
+    public function geopoints() {
+        return $this->hasMany('Aruma\Model\GeoPoint');
+    }
+
     public function centers() {
         return $this->belongsToMany('Aruma\Model\Center', 'centers_organizations');
     }

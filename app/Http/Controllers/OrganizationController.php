@@ -29,6 +29,11 @@ class OrganizationController extends Controller {
         $organization->activities;
         $organization->products;
         $organization->medias;
+        $geopoints = $organization->geopoints;
+        foreach($geopoints as $geo) {
+            $geo->location;
+        }   
+
         //$organization->location;
         $organization->users;
         return $organization;
@@ -38,6 +43,17 @@ class OrganizationController extends Controller {
         $organization = Organization::find($id);
         return $organization->medias;
 	}
+
+	public function geopoints($id) {
+        $organization = Organization::find($id);
+        $geopoints = $organization->geopoints;
+        foreach($geopoints as $geo) {
+            $geo->location;
+        }   
+        return $geopoints;
+	}
+
+
 
 	public function store(Request $request) {
         $user = User::find($request['user']['sub']);
@@ -138,6 +154,7 @@ class OrganizationController extends Controller {
             'google_id' => $geo['id'],
             'place_id' => $geo['place_id'],
             'name' => $geo['name'],
+            'coordinates' => $geo['coordinates']
         );
         $values_allowed = array(
             'sublocality' => true,
@@ -161,6 +178,11 @@ class OrganizationController extends Controller {
                     $result[$key_code] = $component['short_name']; 
                 }
             }
+        }
+        $coordinates = $geo['coordinates'];
+        if(is_array($coordinates)) {
+            $result['latitude'] = $coordinates['lat'];
+            $result['longitude'] = $coordinates['lng'];
         }
     
         Log::info($result);

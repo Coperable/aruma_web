@@ -9,10 +9,10 @@ class CreateActivitiesTable extends Migration {
         Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('organization_id')->unsigned()->nullable;
+            $table->integer('organization_id')->unsigned()->nullable();
             $table->foreign('organization_id')->references('id')->on('organizations');
 
-            $table->integer('center_id')->unsigned()->nullable;
+            $table->integer('center_id')->unsigned()->nullable();
             $table->foreign('center_id')->references('id')->on('centers');
 
             $table->string('title');

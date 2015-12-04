@@ -9,6 +9,7 @@ class CreateGeoPointsTable extends Migration {
 
 		Schema::create('geo_points', function(Blueprint $table) {
 
+            $table->increments('id');
             $table->integer('location_id')->unsigned();
             $table->foreign('location_id')->references('id')->on('locations');
             $table->integer('organization_id')->unsigned();
