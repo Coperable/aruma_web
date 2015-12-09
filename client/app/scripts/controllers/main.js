@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('poliApp')
-.controller('MainCtrl', function ($scope, $timeout, $location, $http, api_host, Page) {
+.controller('MainCtrl', function ($scope, $timeout, $location, $http, $sce, api_host, Page) {
     $scope.setup_components = function() {
 
             jQuery('a[href*=#]').click(function() {
@@ -56,12 +56,16 @@ angular.module('poliApp')
 
 
             jQuery('.grid').imagesLoaded().always( function() {
-                console.log('finish');
                 $scope.grid.masonry();
                 window.loading_screen.finish(); 
             });  
 
     };
+
+    $scope.getImageSrc = function (image_name, height, width) {
+        return $sce.trustAsResourceUrl('http://images.collab-dev.com/'+height+'x'+width+'/aruma/'+image_name);
+    };
+
 
     $scope.arrange_items = [];
     $scope.items = [];
@@ -110,7 +114,6 @@ angular.module('poliApp')
         id: $routeParams.id
     }, function(organization) {
         $scope.organization = organization;
-        console.dir($scope.organization);
     });
 
 
@@ -120,7 +123,6 @@ angular.module('poliApp')
 
     $scope.organization = {};
     $scope.handleTweets = function(tweets) {
-        console.log('tweets');
         var x = tweets.length;
         var n = 0;
         var element = jQuery('.sec_twitter');
@@ -144,46 +146,99 @@ angular.module('poliApp')
             return media.name != $scope.organization.main_picture;
         });
 
+        $scope.geopoints = _.filter($scope.organization.geopoints, function(geopoint) {
+            return geopoint.location && geopoint.location.longitude && geopoint.location.latitude;
+        });
+
         $timeout(function() {
-            jQuery('#carousel-organization').imagesLoaded().always( function() {
-                window.loading_screen.finish(); 
-            });  
-
-
-            if($scope.organization.instagram_hashtag) {
-                jQuery.fn.spectragram.accessData = {
-                    accessToken: instagram_token,
-                    clientID: instagram_client_id
-                };
-
-                jQuery('.organization-instafeedtag').each(function() {
-                    jQuery(this).children('.grilla_instagram').spectragram('getRecentTagged', {
-                        query: $scope.organization.instagram_hashtag,
-                        max: 12,
-                        wrapEachWith: '<div class="col-sm-4"></div>'
-                    });
-                });
-            }
-            if($scope.organization.twitter_hashtag) {
-                twitterFetcher.fetch({
-                    id: $scope.organization.twitter_hashtag, 
-                    domId: '', 
-                    maxTweets: 5,
-                    enableLinks: true,
-                    showUser:true, 
-                    showTime: true, 
-                    dateFunction: '', 
-                    showRetweet: false,
-                    customCallback:  $scope.handleTweets
-                });
-            }
-            jQuery('#carouser-organization').carousel({
-                interval: 2000
-            })
+            $scope.setup_components();
         }, 1000);
-
     });
     
+    $scope.setup_components = function() {
+        jQuery('#carousel-organization').imagesLoaded().always( function() {
+            window.loading_screen.finish(); 
+        });  
+
+
+        if($scope.organization.instagram_hashtag) {
+            jQuery.fn.spectragram.accessData = {
+                accessToken: instagram_token,
+                clientID: instagram_client_id
+            };
+
+            jQuery('.organization-instafeedtag').each(function() {
+                jQuery(this).children('.grilla_instagram').spectragram('getRecentTagged', {
+                    query: $scope.organization.instagram_hashtag,
+                    max: 12,
+                    wrapEachWith: '<div class="col-sm-4"></div>'
+                });
+            });
+        }
+        if($scope.organization.twitter_hashtag) {
+            twitterFetcher.fetch({
+                id: $scope.organization.twitter_hashtag, 
+                domId: '', 
+                maxTweets: 5,
+                enableLinks: true,
+                showUser:true, 
+                showTime: true, 
+                dateFunction: '', 
+                showRetweet: false,
+                customCallback:  $scope.handleTweets
+            });
+        }
+        jQuery('#carouser-organization').carousel({
+            interval: 2000
+        })
+
+
+        var center_lat = 0,
+            center_lng = 0;
+
+        if($scope.geopoints.length > 0) {
+            _.each($scope.geopoints, function(geopoint) {
+                center_lat = parseFloat(center_lat) + parseFloat(geopoint.location.latitude);
+                center_lng = parseFloat(center_lng) + parseFloat(geopoint.location.longitude);
+            });
+            center_lat = parseFloat(center_lat) / parseFloat($scope.geopoints.length);
+            center_lng = parseFloat(center_lng) / parseFloat($scope.geopoints.length);
+
+        }
+
+        $scope.map = new google.maps.Map(document.getElementById('map'), {
+            center: {lng: center_lng, lat: center_lat},
+            zoom: 12
+        });
+
+        $scope.openWindow = function(infoWindow, marker) {
+            $scope.infoWindow = infoWindow;
+            $scope.infoWindow.open($scope.map, marker);
+        };
+
+        _.each($scope.geopoints, function(geopoint) {
+            var position = new google.maps.LatLng(geopoint.location.latitude, geopoint.location.longitude),
+            contentString = '<div id="content">'+
+                  '<div id="siteNotice"></div>'+
+                  '<div id="bodyContent">'+
+                  '<p><b>'+geopoint.description+'</b></p>'+
+                  '</div>'+
+                  '</div>';
+            var infoWindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            var marker = new google.maps.Marker({
+                position: position,
+                map: $scope.map,
+                title: geopoint.description
+            });
+            marker.addListener('click', function() {
+                $scope.openWindow(infoWindow, marker);
+            });
+        });
+
+    };
+
 })
 .controller('activity-controller', function ($scope, $timeout, $http, $routeParams, api_host, Activity) {
 

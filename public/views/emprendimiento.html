@@ -1,3 +1,8 @@
+<style>
+#map {
+    height: 100%
+}
+</style>
 <div class="full_screen" id="portada">
     <div class="imagen_portada" ng-style="{'background-image': 'url(http://images.collab-dev.com/aruma/'+organization.main_picture+')'}" ng-style="{'background-size: cover !important;'}" ></div>
 
@@ -77,14 +82,15 @@
 
 <div class="gap"></div>
 
-<div class="row sec_donde">
+<div class="row sec_donde" ng-if="organization.geopoints.length">
 	<div class="row-height">
-		<div class="col-sm-4 donde_tit col-sm-height col-sm-middle">
+		<div class="col-sm-4 col-md-4 donde_tit col-sm-height col-sm-middle">
 			<h1>Dónde podés encon- trarnos</h1>
 		</div>
 
-		<div class="col-sm-8 donde_map">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d105073.23949906467!2d-58.43329845000001!3d-34.615823750000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1446645514133" width="900" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+		<div class="col-sm-8 col-md-8 donde_map" style="height: 600px; width: 900px;">
+            <div id="map"></div>
+			<!--iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d105073.23949906467!2d-58.43329845000001!3d-34.615823750000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1446645514133&markers=color:green%7Clabel:A%7C-34.6082517,-58.6980597" width="900" height="600" frameborder="0" style="border:0" allowfullscreen></iframe-->
 		</div>
 
 	</div>
