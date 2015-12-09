@@ -221,7 +221,8 @@ angular.module('poliApp')
             contentString = '<div id="content">'+
                   '<div id="siteNotice"></div>'+
                   '<div id="bodyContent">'+
-                  '<p><b>'+geopoint.description+'</b></p>'+
+                  '<p>'+geopoint.description+'</p>'+
+                  '<p><b>'+geopoint.location.formatted_address+'</b></p>'+
                   '</div>'+
                   '</div>';
             var infoWindow = new google.maps.InfoWindow({
