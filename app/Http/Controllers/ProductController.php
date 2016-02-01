@@ -62,6 +62,7 @@ class ProductController extends Controller {
 
 
 	public function destroy($id) {
+        DB::table('products_medias')->where('product_id', '=', $id)->delete();
         Product::destroy($id);
 	}
 

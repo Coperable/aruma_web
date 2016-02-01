@@ -143,6 +143,7 @@ class OrganizationController extends Controller {
 	}
 
 	public function destroy($id) {
+        DB::table('organizations_medias')->where('organization_id', '=', $id)->delete();
         Organization::destroy($id);
 	}
 
@@ -200,6 +201,21 @@ class OrganizationController extends Controller {
 
         return $media;
     }
+
+	public function removePicture(Request $request, $organizationId, $mediaId) {
+        $user = User::find($request['user']['sub']);
+        $organization = Organization::find($organizationId);
+        DB::transaction(function() use ($request, $organization, $mediaId) {
+            if($organization->media_id == $mediaId) {
+                $organization->media_id = null;
+                $organization->main_picture = null;
+                $organization->save();
+            }
+            DB::table('organizations_medias')->where('organization_id', '=', $organization->id)->where('media_id', '=', $mediaId)->delete();
+            Media::destroy($mediaId);
+        });
+    }
+
 
     static public function slugify($text) { 
         $text = preg_replace('~[^\\pL\d]+~u', '-', $text);

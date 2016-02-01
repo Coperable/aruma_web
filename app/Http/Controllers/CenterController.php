@@ -80,9 +80,12 @@ class CenterController extends Controller {
         $center = new Center;
 
         DB::transaction(function() use ($request, $center, $user) {
-            $geo = $this->processGeoValue($request->input('location'));
-            $location = Location::firstOrCreate($geo);
-            $location->save();
+            if($request->has('location') && isset($request->input('location')['address_components'])) {
+                $geo = $this->processGeoValue($request->input('location'));
+                $location = Location::firstOrCreate($geo);
+                $location->save();
+                $center->location_id = $location->id;
+            }
 
             $center->title = $request->input('title');
             $center->description = $request->input('description');
@@ -90,7 +93,6 @@ class CenterController extends Controller {
             $center->main_picture = $request->input('main_picture');
             $center->twitter_hashtag = $request->input('twitter_hashtag');
             $center->instagram_hashtag = $request->input('instagram_hashtag');
-            $center->location_id = $location->id;
             $center->save();
                  
         });
@@ -101,17 +103,18 @@ class CenterController extends Controller {
 	public function update(Request $request, $id) {
         $center = Center::find($id);
         DB::transaction(function() use ($request, $center, $user) {
-            $geo = $this->processGeoValue($request->input('location'));
-            $location = Location::firstOrCreate($geo);
-            $location->save();
-
+            if($request->has('location') && isset($request->input('location')['address_components'])) {
+                $geo = $this->processGeoValue($request->input('location'));
+                $location = Location::firstOrCreate($geo);
+                $location->save();
+                $center->location_id = $location->id;
+            }
             $center->title = $request->input('title');
             $center->description = $request->input('description');
             $center->details = $request->input('details');
             $center->main_picture = $request->input('main_picture');
             $center->twitter_hashtag = $request->input('twitter_hashtag');
             $center->instagram_hashtag = $request->input('instagram_hashtag');
-            $center->location_id = $location->id;
             $center->save();
  
         });
@@ -131,6 +134,8 @@ class CenterController extends Controller {
 
 
 	public function destroy($id) {
+        DB::table('centers_organizations')->where('center_id', '=', $id)->delete();
+        DB::table('centers_users')->where('center_id', '=', $id)->delete();
         Center::destroy($id);
 	}
 

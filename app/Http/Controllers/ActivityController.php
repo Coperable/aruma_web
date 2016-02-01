@@ -11,6 +11,7 @@ use Aruma\Model\Activity;
 use Aruma\Model\Location;
 use Aruma\Model\Center;
 use Aruma\Model\Organization;
+use Aruma\Model\Media;
 use Aruma\Model\ActivityMedia;
 
 class ActivityController extends Controller {
@@ -41,9 +42,12 @@ class ActivityController extends Controller {
 
         DB::transaction(function() use ($request, $activity) {
 
-            $geo = $this->processGeoValue($request->input('location'));
-            $location = Location::firstOrCreate($geo);
-            $location->save();
+            if($request->has('location') && isset($request->input('location')['address_components'])) {
+                $geo = $this->processGeoValue($request->input('location'));
+                $location = Location::firstOrCreate($geo);
+                $location->save();
+                $activity->location_id = $location->id;
+            }
 
             $activity->title = $request->input('title');
             $activity->description = $request->input('description');
@@ -54,7 +58,6 @@ class ActivityController extends Controller {
             $event_date = str_replace("T", " ", $arr[0]);
             $activity->event_date = Carbon::createFromFormat('Y-m-d H:i:s', $event_date);
 
-            $activity->location_id = $location->id;
 
             $activity->twitter_hashtag = $request->input('twitter_hashtah');
             $activity->instagram_hashtag = $request->input('instagram_hashtag');
@@ -135,6 +138,7 @@ class ActivityController extends Controller {
 
 
 	public function destroy($id) {
+        DB::table('activities_medias')->where('activity_id', '=', $id)->delete();
         Activity::destroy($id);
 	}
 
@@ -178,6 +182,19 @@ class ActivityController extends Controller {
         Log::info($result);
         return $result;
     }
+
+	public function setMainPicture(Request $request, $activityId, $mediaId) {
+        $user = User::find($request['user']['sub']);
+        $activity = Activity::find($activityId);
+        $media = Media::find($mediaId);
+        DB::transaction(function() use ($request, $activity, $media) {
+            $activity->main_picture = $media->name;
+            $activity->save();
+        });
+
+        return $media;
+    }
+
 
 }
 
