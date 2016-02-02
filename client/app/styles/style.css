@@ -58,6 +58,81 @@ body {
 .mini_gap {
   height: 20px;
 }
+.nav-bar {
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
+  color: #ffffff;
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.65)), color-stop(100%, rgba(0, 0, 0, 0.1)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 100%);
+  /* W3C */
+}
+.nav-breadcrumb {
+  padding: 8px 20px;
+  font-family: Gotham_Md;
+  text-transform: uppercase;
+}
+.nav-breadcrumb i {
+  padding: 0 8px;
+}
+.nav-breadcrumb a {
+  color: #ffffff;
+}
+.nav-breadcrumb a small {
+  font-size: 100%;
+  font-family: Gotham_Lt;
+}
+/* Parallax base styles --------------------- */
+.parallax {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-perspective: 1px;
+  perspective: 1px;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.parallax__layer--base {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.parallax__layer--back {
+  -webkit-transform: translateZ(-1px);
+  transform: translateZ(-1px);
+  padding: 0;
+}
+/* add some padding to force scrollbars */
+.parallax__layer {
+  padding: 100vh 0;
+  background-size: cover;
+  width: 100%;
+}
+.imagen_encabezado {
+  position: absolute;
+  width: 201%;
+  left: -51%;
+  top: -25%;
+  height: 100%;
+}
+.seccion_principal {
+  background-color: #fff;
+  position: relative;
+}
 .full_screen {
   height: 100vh;
   width: 100%;
@@ -74,7 +149,7 @@ body {
   /* vertical alignment of the inline element */
   height: 100%;
 }
-.full_screen .imagen_portada {
+.imagen_portada {
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
@@ -89,10 +164,6 @@ body {
   font: 16px/1 Arial sans-serif;
   /* <-- reset the font property */
 }
-.full_screen .imagen_portada img {
-  min-width: 100%;
-  min-height: 100%;
-}
 .texto_portada {
   position: absolute;
   top: 40%;
@@ -106,6 +177,7 @@ body {
   letter-spacing: 18px;
   font-size: 40pt;
   margin: 0;
+  color: #ffffff !important;
 }
 .texto_portada h1 small {
   color: #ffffff;
@@ -114,7 +186,7 @@ body {
 }
 .texto_portada h4 {
   font-family: 'Lato', sans-serif;
-  font-size: 14pt;
+  font-size: 12pt;
   font-weight: 300;
   max-width: 400px;
   margin-left: auto;
@@ -150,7 +222,7 @@ body {
   display: block;
   margin: 0px 20px;
   font-family: Gotham_Md;
-  font-size: 14pt;
+  font-size: 12pt;
   letter-spacing: 1pt;
   text-transform: uppercase;
 }
@@ -414,14 +486,35 @@ a:focus {
 /* ---- .grid-item ---- */
 .grid-sizer,
 .grid-item {
-  width: 33.333%;
   overflow: hidden;
+  /* Small devices (tablets, 768px and up) */
+  /* Medium devices (desktops, 992px and up) */
+  /* Large devices (large desktops, 1200px and up) */
+}
+@media (min-width: 640px) {
+  .grid-sizer,
+  .grid-item {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .grid-sizer,
+  .grid-item {
+    width: 50%;
+  }
+}
+@media (min-width: 1200px) {
+  .grid-sizer,
+  .grid-item {
+    width: 33.333%;
+  }
 }
 .grid-item {
   float: left;
 }
 .grid-item img {
   display: block;
+  width: 100%;
   max-width: 100%;
 }
 .grid-item .caption {
@@ -464,7 +557,7 @@ a:focus {
 .grid-item .caption span {
   margin: 3px 0;
   line-height: 1;
-  font-size: 12px;
+  font-size: 10px;
   font-family: Gotham;
   text-transform: uppercase;
   color: #ffffff;
@@ -478,6 +571,15 @@ a:focus {
 .grid-item .caption span.lugar::after,
 .grid-item .caption span.lugar::before {
   content: ' - ';
+}
+.grid-item .caption:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.grid-item .caption:hover h2 {
+  font-size: 22px;
+}
+.grid-item .caption:hover > div {
+  padding-bottom: 20px;
 }
 .centrado_completo {
   width: 100%;
@@ -546,7 +648,7 @@ a:focus {
   width: 100%;
 }
 .tarjeta_producto p {
-  font-size: 12px;
+  font-size: 10px;
   padding: 0 20px;
   margin-top: 10px;
   line-height: 1.6;
@@ -751,19 +853,4 @@ a:focus {
   .col-lg-bottom {
     vertical-align: bottom;
   }
-}
-.widget ul:last-child,
-.widget p:last-child {
-  margin-bottom: 0;
-}
-.widget .instafeed li {
-  width: 33.3333%;
-  display: inline-block;
-  padding: 0 4px 4px 0;
-}
-.widget .instafeed li img {
-  max-width: 100%;
-}
-.widget .instafeed li:nth-of-type(n+7) {
-  display: none;
 }
