@@ -58,10 +58,12 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-      moment.locale('es');
   })
+.run(function() {
+    moment.locale('es');
+})
 .filter('moment', function() {
     return function(dateString, format) {
-        return moment(dateString).format(format);
+        return moment(dateString).locale('es').format(format);
     };
 });

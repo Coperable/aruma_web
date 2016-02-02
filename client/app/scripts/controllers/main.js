@@ -56,7 +56,12 @@ angular.module('poliApp')
 
 
             jQuery('.grid').imagesLoaded().always( function() {
-                $scope.grid.masonry();
+                jQuery('.grid').masonry({
+                    itemSelector: '.grid-item',
+                    percentPosition: true,
+                    columnWidth: '.grid-sizer'
+                });
+
                 window.loading_screen.finish(); 
             });  
 
@@ -120,7 +125,7 @@ angular.module('poliApp')
 
         $timeout(function() {
             $scope.setup_components();
-        }, 2000);
+        }, 3000);
     });
 
     $scope.view = function(type, id) {

@@ -55,8 +55,8 @@
 	<div class="col-sm-6" style="min-height: 489px">
         <div id="carousel-organization" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <div class="item" ng-repeat="media in medias" ng-class="{active: $first}">
-                    <img ng-src="http://images.collab-dev.com/full-fit-in/489x489/smart/aruma/{{media.name}}" width="100%">
+                <div class="item" ng-repeat="media in medias" ng-class="{active: $first}" style="min-height: 300px">
+                    <img ng-src="http://images.collab-dev.com/full-fit-in/489x489/smart/aruma/{{media.name}}" width="100%" class="img-responsive">
                 </div>
             </div>
             <a class="left carousel-control" data-target="#carousel-organization" role="button" data-slide="prev">
@@ -71,7 +71,6 @@
 	</div>
 
 </div>
-
 <div class="row sec_productos">
 	<h1>{{organization.products_legend}}</h1>
 	<div class="col-xs-6 col-sm-3 tarjeta_producto" ng-repeat="product in organization.products">
@@ -87,7 +86,15 @@
                         <h4 class="modal-title" id="myModalLabel">{{product.name}}</h4>
                     </div>
                     <div class="modal-body">
-                        <img ng-src="http://images.collab-dev.com/aruma/{{product.main_picture}}" class="img-responsive">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <img ng-src="http://images.collab-dev.com/aruma/{{product.main_picture}}" class="img-responsive">
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <p>{{product.description}}</p>
+                                <p>{{product.detailis}}</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                     </div>
@@ -96,6 +103,7 @@
         </div>
 	</div>
 </div>
+
 
 <div class="gap"></div>
 
@@ -113,6 +121,19 @@
 	</div>
 </div>
 
+
+<div class="row sec_productos" ng-if="organization.activities.length">
+	<h1>Actividades</h1>
+	<div class="col-xs-6 col-sm-3 tarjeta_producto" ng-repeat="activity in organization.activities">
+        <h4>{{activity.name}}</h4>
+		<a href="/#/activities/{{activity.id}}"><img ng-src="http://images.collab-dev.com/aruma/{{activity.main_picture}}" class="img-responsive"></a>
+	</div>
+</div>
+
+
+
+
+
 <div class="sec_twitter">
 
 	<i class="fa fa-twitter"></i>
@@ -126,12 +147,20 @@
 
 </div>
 
+<div class="sec_fotos organization-instafeedtag" ng-if="organization.website">
+
+	<h4>Visitanos en </h4>
+	<h1><a href="http://{{organization.website}}" target="_blank">{{organization.website}}</a></h1>
+
+
+</div>
+
+
 <div class="sec_fotos organization-instafeedtag" ng-if="organization.instagram_hashtag">
 
 	<h1>#{{organization.instagram_hashtag}}</h1>
 	<h4>{{organization.slogan}}</h4>
-	<div class="row grilla_instagram">
-	</div>
+	<div class="row grilla_instagram"> </div>
 
 </div>
 
