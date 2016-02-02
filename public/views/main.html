@@ -1,38 +1,42 @@
-<div class="full_screen" id="portada">
-    <div class="imagen_portada" ng-style="{'background-image': 'url(http://images.collab-dev.com/aruma/'+home.main_picture+')'}" ng-style="{'background-size: cover !important;'}" ></div>
+<div class="main-container">
+    <section class="cover fullscreen parallax">
+        <div class="background-image-holder ">
+            <img alt="image" class="background-image" ng-src="http://images.collab-dev.com/aruma/{{home.main_picture}}" />
+        </div>
 
-    <div class="texto_portada">
-        <h1>Aruma <small>LAB</small></h1>
-        <h4>{{home.description}}</h4>
-    </div>
-
+        <div class="container v-align-transform">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 text-center">
+                    <h1>Aruma <small>LAB</small></h1>
+                </div>
+                <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center">
+                    <h4>{{home.description}}</h4>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
+<div class="pseudosection mini_gap"></div>
 
-<div class="seccion_principal"></div>
-    <div id="inicio"></div>
-
-    <div class="mini_gap"></div>
-
-    <div>
+<div class="pseudosection">
 
     <div class="button-group filters-button-group">
+
         <button class="btn_filtro is-checked" data-filter="*">todo</button>
         <!--button class="btn_filtro" data-filter=".products">productos</button-->
         <button class="btn_filtro" data-filter=".organizations">emprendimientos</button>
         <button class="btn_filtro" data-filter=".activities">actividades</button>
         <button class="btn_filtro" data-filter=".centers">laboratorio</button>
+
     </div>
 
     <!--div class="toggle_map">
         <h4>board <i class="fa fa-toggle-off"></i> mapa</h4>
     </div-->
 
-    <!--
     <div class="mini_gap"></div>
-    -->
 
-    <div class="mini_gap"></div>
     <div class="grid" style="min-height: 620px">
         <div class="grid-sizer"></div>
 
@@ -49,7 +53,9 @@
 
 </div>
 
-<div class="sec_info">
+
+<div class="sec_info pseudosection">
+
     <div class="info_inner">
         <h1>Estamos en contacto</h1>
         <div class="info_botones">
@@ -57,5 +63,5 @@
             <button class="btn_nav">Escribinos</button>
         </div>
     </div>
-</div>
 
+</div>

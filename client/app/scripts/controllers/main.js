@@ -60,6 +60,33 @@ angular.module('poliApp')
                 window.loading_screen.finish(); 
             });  
 
+
+
+
+
+
+            jQuery('.background-image-holder').each(function() {
+                var imgSrc = jQuery(this).children('img').attr('src');
+                jQuery(this).css('background', 'url("' + imgSrc + '")');
+                jQuery(this).children('img').hide();
+                jQuery(this).css('background-position', 'initial');
+            });
+
+            setTimeout(function() {
+                jQuery('.background-image-holder').each(function() {
+                    jQuery(this).addClass('fadeIn');
+                });
+            }, 200);
+
+
+            if (jQuery(window).width() > 768) {
+                jQuery('.parallax:nth-of-type(1) .background-image-holder').css('top', -(jQuery('nav').outerHeight(true)));
+            }
+
+            if (jQuery(window).width() > 768) {
+                jQuery('section.fullscreen:nth-of-type(1)').css('height', (jQuery(window).height() - jQuery('nav').outerHeight(true)));
+            }
+
     };
 
     $scope.getImageSrc = function (image_name, height, width) {
@@ -247,6 +274,8 @@ angular.module('poliApp')
 
     $scope.medias = [];
 
+
+
     Activity.get({
         id: $routeParams.id
     }, function(activity) {
@@ -283,6 +312,34 @@ angular.module('poliApp')
             jQuery('#carouser-activity').carousel({
                 interval: 2000
             })
+
+
+            if(activity.location) {
+                $scope.map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lng: activity.location.longitude, lat: activity.location.latitude},
+                    zoom: 12
+                });
+
+                var position = new google.maps.LatLng(activity.location.latitude, activity.location.longitude),
+                contentString = '<div id="content">'+
+                      '<div id="siteNotice"></div>'+
+                      '<div id="bodyContent">'+
+                      '<p><b>'+activity.location.formatted_address+'</b></p>'+
+                      '</div>'+
+                      '</div>';
+                var infoWindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                var marker = new google.maps.Marker({
+                    position: position,
+                    map: $scope.map,
+                    title: activity.title
+                });
+                marker.addListener('click', function() {
+                    $scope.openWindow(infoWindow, marker);
+                });
+            }
+
         }, 1000);
 
     });

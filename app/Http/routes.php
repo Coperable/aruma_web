@@ -35,6 +35,7 @@ Route::get('api/activity/{id}/medias', ['uses' => 'ActivityController@medias']);
 Route::post('api/organization/{organizationId}/mainPicture/{mediaId}', ['middleware' => 'auth', 'uses' => 'OrganizationController@setMainPicture']);
 Route::post('api/organization/{organizationId}/remove/{mediaId}', ['middleware' => 'auth', 'uses' => 'OrganizationController@removePicture']);
 Route::post('api/activity/{activityId}/mainPicture/{mediaId}', ['middleware' => 'auth', 'uses' => 'ActivityController@setMainPicture']);
+Route::post('api/activity/{activityId}/remove/{mediaId}', ['middleware' => 'auth', 'uses' => 'ActivityController@removePicture']);
 Route::post('api/center/{centerId}/organization/{organizationId}', ['middleware' => 'auth', 'uses' => 'CenterController@addOrganization']);
 Route::post('api/center/{centerId}/remove/organization/{organizationId}', ['middleware' => 'auth', 'uses' => 'CenterController@removeOrganization']);
 

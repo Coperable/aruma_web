@@ -16,9 +16,9 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/style.css"> 
+    <!-- build:css(.) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/style.css"> 
     <!-- endbuild -->
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic,900,900italic,100italic,100' rel='stylesheet' type='text/css'>
@@ -27,6 +27,20 @@
 </head>
   
 <body ng-app="poliApp">
+
+    <div class="nav-bar"> 
+         
+        <div class="nav-breadcrumb"> 
+ 
+            <a href="/#/">Aruma<small>Lab</small></a> 
+ 
+            <i class="fa fa-caret-right"></i> 
+ 
+            Haulani 
+ 
+        </div> 
+ 
+    </div> 
 
     <div id="main_container" ng-view autoscroll="true"></div>
 
@@ -54,7 +68,7 @@
             <div class="col-xs-6 col-sm-4 col-md-3">
 
                 <div class="gap"></div>
-                <h4>Latest Updates</h4>
+                <h4>Twitter</h4>
                 <div class="recent_post">
                     <span><i class="fa fa-twitter"></i></span>
                 </div>
@@ -140,6 +154,7 @@
     <!-- endbuild -->
 
 
+    <script src="scripts/externals/parallax.js"></script>
     <script src="scripts/externals/spectragram.min.js"></script>
     <script src="scripts/externals/isotope.pkgd.js"></script>
 

@@ -14,54 +14,56 @@
 
 </div>
 
-<div class="row valign">
-	
-	<div class="col-sm-6">
+<div class="flex-container">
+    <div class="row valign">
+        
+        <div class="col-sm-6">
 
-		<div class="centered_90 centrado completo">
+            <div class="centered_90 centrado completo">
 
-		  	<div class="gap"></div>
+                <div class="gap"></div>
 
-		  	<div class="info_evento">
+                <div class="info_evento">
 
-		  		<span class="fecha">{{activity.event_date |moment: 'dddd D [de] MMMM'}}</span>
+                    <span class="fecha">{{activity.event_date |moment: 'dddd D [de] MMMM'}}</span>
 
-		  		<span class="hora">{{activity.event_date |moment: 'HH:mm'}} hs</span>
+                    <span class="hora">{{activity.event_date |moment: 'HH:mm'}} hs</span>
 
-		  		<span class="lugar">{{activity.location.formatted_address}}</span>
+                    <span class="lugar">{{activity.location.formatted_address}}</span>
 
-		  		<span class="owner">de <a href="">{{activity.coordinators}}</a></span>
+                    <span class="owner">de <a href="">{{activity.coordinators}}</a></span>
 
-		  		<p>{{activity.details}}</p>
+                    <p>{{activity.details}}</p>
 
-		  	</div>
-
-		</div>
-
-	</div>
-
-
-	<div class="col-sm-6" style="min-height: 489px; max-height: 489px; width: 100%">
-        <div id="carousel-activity" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner" role="listbox">
-                <div class="item" ng-repeat="media in medias" ng-class="{active: $first}">
-                    <img ng-src="http://images.collab-dev.com/489x489/smart/aruma/{{media.name}}" width="100%">
                 </div>
-            </div>
-            <a class="left carousel-control" data-target="#carousel-activity" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" data-target="#carousel-activity" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-	</div>
 
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-6" style="min-height: 489px; max-height: 489px; width: 100%">
+            <div id="carousel-activity" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item" ng-repeat="media in medias" ng-class="{active: $first}">
+                        <img ng-src="http://images.collab-dev.com/489x489/smart/aruma/{{media.name}}" width="100%" class="img-responsive">
+                    </div>
+                </div>
+                <a class="left carousel-control" data-target="#carousel-activity" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" data-target="#carousel-activity" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
 </div>
 
-<div class="row sec_donde">
+<div class="row sec_donde" ng-if="activity.location">
 
 	<div class="row-height">
 	
@@ -73,7 +75,8 @@
 
 		<div class="col-sm-8 donde_map">
 
-			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d105073.23949906467!2d-58.43329845000001!3d-34.615823750000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1446645514133" width="900" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <div id="map"></div>
+			<!--iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d105073.23949906467!2d-58.43329845000001!3d-34.615823750000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1446645514133" width="900" height="600" frameborder="0" style="border:0" allowfullscreen></iframe-->
 
 		</div>
 
@@ -81,21 +84,20 @@
 
 </div>
 
-<div class="sec_twitter">
+<!--div class="sec_twitter">
 
 	<i class="fa fa-twitter"></i>
 	
 	<p>@ana-es: compartiendo un delicioso helado con mis amigos. #haulani</p>
 
-</div>
+</div-->
 
 
 <div class="sec_fotos activity-instafeedtag" ng-if="activity.instagram_hashtag">
 
 	<h1>#{{activity.instagram_hashtag}}</h1>
 	<h4>{{activity.slogan}}</h4>
-	<div class="row grilla_instagram">
-	</div>
+	<div class="row grilla_instagram"> </div>
 
 </div>
 

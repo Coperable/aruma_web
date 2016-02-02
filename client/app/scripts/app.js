@@ -59,7 +59,6 @@ angular
         redirectTo: '/'
       });
       moment.locale('es');
-
   })
 .filter('moment', function() {
     return function(dateString, format) {

@@ -27,6 +27,7 @@ class ActivityController extends Controller {
 
 	public function show($id) {
         $activity = Activity::find($id);
+        Log:info($activity);
         $activity->medias;
         $activity->location;
         return $activity;
@@ -193,6 +194,20 @@ class ActivityController extends Controller {
         });
 
         return $media;
+    }
+
+	public function removePicture(Request $request, $activityId, $mediaId) {
+        $user = User::find($request['user']['sub']);
+        $activity = Activity::find($activityId);
+        DB::transaction(function() use ($request, $activity, $mediaId) {
+            if($activity->media_id == $mediaId) {
+                $activity->media_id = null;
+                $activity->main_picture = null;
+                $activity->save();
+            }
+            DB::table('activities_medias')->where('activity_id', '=', $activity->id)->where('media_id', '=', $mediaId)->delete();
+            Media::destroy($mediaId);
+        });
     }
 
 
