@@ -1,3 +1,9 @@
+
+<!-- 
+
+ELIMINAMOS LA IMAGEN DE PORTADA EN LA PÁGINA DE ACTIVIDAD. 
+SE UTILIZARÁ ÚNICAMENTE UNA IMAGEN, EN EL ESPACIO DEL SLIDER
+
 <div class="full_width" id="portada">
 
     <img ng-src="http://images.collab-dev.com/aruma/{{activity.main_picture}}">
@@ -12,7 +18,7 @@
 
     </div>
 
-</div>
+</div>-->
 
 <div class="flex-container">
     <div class="row valign">
@@ -22,6 +28,8 @@
             <div class="centered_90 centrado completo">
 
                 <div class="gap"></div>
+
+                <h1>{{activity.title}}</h1>
 
                 <div class="info_evento">
 
@@ -42,11 +50,11 @@
         </div>
 
 
-        <div class="col-sm-6" style="min-height: 489px; max-height: 489px; width: 100%">
+        <div class="col-sm-6" style="min-height: 489px; max-height: 489px;">
             <div id="carousel-activity" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner" role="listbox">
                     <div class="item" ng-repeat="media in medias" ng-class="{active: $first}">
-                        <img ng-src="http://images.collab-dev.com/489x489/smart/aruma/{{media.name}}" width="100%" class="img-responsive">
+                        <img ng-src="http://images.collab-dev.com/aruma/{{activity.main_picture}}" width="100%" class="img-responsive">
                     </div>
                 </div>
                 <a class="left carousel-control" data-target="#carousel-activity" role="button" data-slide="prev">

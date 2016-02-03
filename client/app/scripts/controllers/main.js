@@ -4,7 +4,7 @@ angular.module('poliApp')
 .controller('MainCtrl', function ($scope, $timeout, $location, $http, $sce, api_host, Page) {
     $scope.setup_components = function() {
 
-            jQuery('a[href*=#]').click(function() {
+            /*jQuery('a[href*=#]').click(function() {
                 if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
                     var target = jQuery(this.hash);
                     target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
@@ -15,7 +15,7 @@ angular.module('poliApp')
                         return false;
                     }
                 }
-            });
+            });*/
             
             $scope.grid = jQuery('.grid').isotope({
                 itemSelector: '.grid-item',

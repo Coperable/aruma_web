@@ -66,7 +66,7 @@
 
 body {
 
-	font-family: 'Lato', sans-serif;
+	font-family: Gotham;
 }
 
 .centered_all {
@@ -75,6 +75,22 @@ body {
 
 	margin-right: auto; 
 }
+
+h4 {
+	color: #666;
+	font-family: Gotham_Md;
+	font-size: 11pt;
+	letter-spacing: 1pt;
+	line-height: 30pt;
+	text-transform: uppercase;
+	border: 0;
+}
+
+.opacity-05 {
+
+	opacity: 0.5; 
+}
+
 
 
 .centered_90 {
@@ -118,7 +134,7 @@ body {
 
 	top: 0; 
 
-	z-index: 10000; 
+	z-index: 1000; 
 
 	width: 100%; 
 
@@ -160,6 +176,17 @@ body {
 	}
 }
 
+.nav-social {
+
+  text-align: right;
+
+  img {
+
+    width: 18px; 
+
+  }
+
+}
 
 // --------------------------------------------
 //
@@ -495,6 +522,31 @@ footer {
 		text-transform: uppercase;
 	}
 
+}
+
+
+.footer-coperable {
+
+	text-align: right;
+
+	img {
+
+		opacity: 0.5;
+
+		width: 180px; 
+	}
+
+	h4 {
+
+		margin: 0;
+	}
+
+	p {
+
+		margin-top: 8px; 
+
+		opacity: 0.5; 
+	}
 }
 
 .bottom_bar {
@@ -1013,12 +1065,12 @@ a, a:hover, a:active, a:focus {
 
 			h2 {
 
-				font-size: 22px; 
+				//font-size: 22px; 
 			}
 
 			& > div {
 
-				padding-bottom: 20px; 
+				//padding-bottom: 20px; 
 
 			}
 
@@ -1155,6 +1207,17 @@ a, a:hover, a:active, a:focus {
 		margin: 40px 0; 
 
 	}
+
+	.fecha {
+
+		margin-top: 15px; 
+
+		p {
+
+			margin: 0;
+
+		}
+	}
 }
 
 .tarjeta_producto {
@@ -1169,7 +1232,7 @@ a, a:hover, a:active, a:focus {
 
 	p {
 
-		font-size: 10px; 
+		font-size: 14px; 
 
 		padding: 0 20px; 
 
@@ -1182,6 +1245,22 @@ a, a:hover, a:active, a:focus {
 
 		padding: 0 20px; 
 
+	}
+
+}
+
+.modal-producto {
+
+	padding: 0 0 15px 0;
+
+	.col {
+
+		padding-left: 0px;
+
+	}
+
+	img {
+		max-height: 70vh;
 	}
 
 }
