@@ -6,10 +6,8 @@
 
         <div class="container v-align-transform">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 text-center">
+                <div class="text-center texto_portada">
                     <h1>Aruma <small>LAB</small></h1>
-                </div>
-                <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 text-center">
                     <h4>{{home.description}}</h4>
                 </div>
             </div>
@@ -17,9 +15,10 @@
     </section>
 </div>
 
-<div class="pseudosection mini_gap"></div>
+<div id="inicio"></div>
+<div class="mini_gap"></div>
 
-<div class="pseudosection">
+<div class="">
 
     <div class="button-group filters-button-group">
 
@@ -40,13 +39,12 @@
     <div class="grid" style="min-height: 620px">
         <div class="grid-sizer"></div>
 
-        <div class="grid-item {{item.type}}" ng-class="{'novedades':'item.novelty'}" ng-repeat="item in arrange_items track by $index |limitTo: 8" ng-click="view(item.type, item.id)">
-            <img ng-src="http://images.collab-dev.com/trim/336x{{heights[$index]}}/smart/aruma/{{item.main_picture}}" style="width:100%; height: 100%">
+        <div class="grid-item {{item.type}}" ng-class="{'novedades':'item.novelty'}" ng-repeat="item in arrange_items track by $index |limitTo: 8" ng-click="view(item.type, item.id)" style="padding: 0px; margin: 0px">
+            <img ng-src="http://images.collab-dev.com/trim/336x{{heights[$index]}}/smart/aruma/{{item.main_picture}}" class="img-responsive" >
             <div class="caption"><div>
                 <h2>{{item.name}}</h2>
                 <span>{{item.description}}</span>
             </div>
-
         </div>
 
     </div>
@@ -54,7 +52,7 @@
 </div>
 
 
-<div class="sec_info pseudosection">
+<div class="sec_info">
 
     <div class="info_inner">
         <h1>Estamos en contacto</h1>

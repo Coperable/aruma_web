@@ -31,11 +31,23 @@
   src: url('/fonts/GothamRounded-MediumItalic.woff') format('woff');
 }
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: Gotham;
 }
 .centered_all {
   margin-left: auto;
   margin-right: auto;
+}
+h4 {
+  color: #666;
+  font-family: Gotham_Md;
+  font-size: 11pt;
+  letter-spacing: 1pt;
+  line-height: 30pt;
+  text-transform: uppercase;
+  border: 0;
+}
+.opacity-05 {
+  opacity: 0.5;
 }
 .centered_90 {
   margin-left: auto;
@@ -61,7 +73,7 @@ body {
 .nav-bar {
   position: fixed;
   top: 0;
-  z-index: 10000;
+  z-index: 1000;
   width: 100%;
   color: #ffffff;
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 100%);
@@ -92,7 +104,12 @@ body {
   font-size: 100%;
   font-family: Gotham_Lt;
 }
-
+.nav-social {
+  text-align: right;
+}
+.nav-social img {
+  width: 18px;
+}
 /* Parallax base styles --------------------- */
 .parallax {
   height: 100vh;
@@ -270,6 +287,20 @@ footer h4 {
   margin-bottom: 30px;
   letter-spacing: 2px;
   text-transform: uppercase;
+}
+.footer-coperable {
+  text-align: right;
+}
+.footer-coperable img {
+  opacity: 0.5;
+  width: 180px;
+}
+.footer-coperable h4 {
+  margin: 0;
+}
+.footer-coperable p {
+  margin-top: 8px;
+  opacity: 0.5;
 }
 .bottom_bar {
   margin-left: auto;
@@ -576,12 +607,6 @@ a:focus {
 .grid-item .caption:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
-.grid-item .caption:hover h2 {
-  font-size: 22px;
-}
-.grid-item .caption:hover > div {
-  padding-bottom: 20px;
-}
 .centrado_completo {
   width: 100%;
   margin: 0 auto;
@@ -644,18 +669,33 @@ a:focus {
   letter-spacing: 8px;
   margin: 40px 0;
 }
+.sec_productos .fecha {
+  margin-top: 15px;
+}
+.sec_productos .fecha p {
+  margin: 0;
+}
 .tarjeta_producto img {
   padding: 0 20px;
   width: 100%;
 }
 .tarjeta_producto p {
-  font-size: 10px;
+  font-size: 14px;
   padding: 0 20px;
   margin-top: 10px;
   line-height: 1.6;
 }
 .tarjeta_producto h4 {
   padding: 0 20px;
+}
+.modal-producto {
+  padding: 0 0 15px 0;
+}
+.modal-producto .col {
+  padding-left: 0px;
+}
+.modal-producto img {
+  max-height: 70vh;
 }
 .donde_tit {
   background-color: #e6b800;
