@@ -6,8 +6,18 @@
 <div class="full_screen" id="portada">
     <div class="imagen_portada" ng-style="{'background-image': 'url(http://images.collab-dev.com/aruma/'+organization.main_picture+')'}" ng-style="{'background-size: cover !important;'}" ></div>
 
+    <div class="social_portada">
+        
+        <a href="" target="_blank"><i class="fa fa-facebook-square fa-fw"></i></a>
+
+        <a href="" target="_blank"><i class="fa fa-twitter-square fa-fw"></i></a>
+
+        <a href="" target="_blank"><i class="fa fa-instagram fa-fw"></i></a>
+
+    </div>
+
     <div class="texto_portada" ng-if="organization.show_title == 1">
-        <h1>{{organization.name}}</h1>
+        <h1> <!--{{organization.name}} --></h1>
         <h4>{{organization.description}}</h4>
     </div>
 
@@ -53,10 +63,12 @@
 	</div>
 
 	<div class="col-sm-6" style="min-height: 489px">
+
         <div id="carousel-organization" class="carousel slide" data-ride="carousel">
+
             <div class="carousel-inner" role="listbox">
                 <div class="item" ng-repeat="media in medias" ng-class="{active: $first}" style="min-height: 300px">
-                    <img ng-src="http://images.collab-dev.com/full-fit-in/489x489/smart/aruma/{{media.name}}" width="100%" class="img-responsive">
+                    <img ng-src="http://images.collab-dev.com/800x600/smart/aruma/{{media.name}}" width="100%" class="img-responsive">
                 </div>
             </div>
             <a class="left carousel-control" data-target="#carousel-organization" role="button" data-slide="prev">
@@ -71,39 +83,69 @@
 	</div>
 
 </div>
+
 <div class="row sec_productos">
+
 	<h1>{{organization.products_legend}}</h1>
+
     <div ng-repeat="product in organization.products">
-    	<div class="col-xs-6 col-sm-3 tarjeta_producto" >
+
+    	<div class="col-xs-6 col-sm-4 col-md-3 tarjeta_producto" >
+
             <h4>{{product.name}}</h4>
-    		<a href data-toggle="modal" data-target="#product_{{product.id}}"><img ng-src="http://images.collab-dev.com/aruma/{{product.main_picture}}" class="img-responsive"></a>
-    		<p>{{product.description}}</p>
+
+            <div class="img_container">
+
+        		<a href data-toggle="modal" data-target="#product_{{product.id}}">
+
+                    <img ng-src="http://images.collab-dev.com/600x800/smart/aruma/{{product.main_picture}}" class="img-responsive">
+
+                </a>
+
+            </div>
+
+    		<!-- p>{{product.description}}</p -->
            <!-- Modal -->
+
     	</div>
-        <div class="modal modal-producto fade" id="product_{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{product.name}}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col col-xs-12 col-sm-6">
-                                <img ng-src="http://images.collab-dev.com/aruma/{{product.main_picture}}" class="img-responsive">
-                            </div>
-                            <div class="col-sx-12 col-sm-6">
-                                <p>{{product.description}}</p>
-                                <p>{{product.detailis}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
+
+    </div>
+
+</div>
+
+<div ng-repeat="product in organization.products">
+
+    <div class="modal modal-producto fade" id="product_{{product.id}}" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{product.name}}</h4>
+                </div>
+
+                <div class="modal-body">
+
+                    <img ng-src="http://images.collab-dev.com/600x800/smart/aruma/{{product.main_picture}}" class="img-responsive">
+
+                    <div>
+
+                        <p>{{product.description}}</p>
+
+                        <p>{{product.detailis}}</p>
+
                     </div>
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
 
 
@@ -135,11 +177,6 @@
         </div>
 	</div>
 </div>
-
-<div class="gap"></div>
-
-
-
 
 
 <div class="sec_twitter">

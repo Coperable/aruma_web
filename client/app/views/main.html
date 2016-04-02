@@ -22,11 +22,12 @@
 
     <div class="button-group filters-button-group">
 
-        <button class="btn_filtro is-checked" data-filter="*">todo</button>
+        <!-- button class="btn_filtro is-checked" data-filter="*">todo</button -->
         <!--button class="btn_filtro" data-filter=".products">productos</button-->
+        <button class="btn_filtro" data-toggle="modal" data-target="#modalAruma">Aruma laboratorio</button>
         <button class="btn_filtro" data-filter=".organizations">emprendimientos</button>
         <button class="btn_filtro" data-filter=".activities">actividades</button>
-        <button class="btn_filtro" data-filter=".centers">laboratorio</button>
+        
 
     </div>
 
@@ -41,14 +42,36 @@
 
         <div class="grid-item {{item.type}}" ng-class="{'novedades':'item.novelty'}" ng-repeat="item in arrange_items track by $index |limitTo: 8" ng-click="view(item.type, item.id)" style="padding: 0px; margin: 0px">
             <img ng-src="http://images.collab-dev.com/trim/336x{{heights[$index]}}/smart/aruma/{{item.main_picture}}" class="img-responsive" >
-            <div class="caption"><div>
+            <div class="caption">
+            <div>
                 <h2>{{item.name}}</h2>
                 <span>{{item.description}}</span>
+                </div>
             </div>
+
         </div>
 
     </div>
 
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade modal-aruma" id="modalAruma" tabindex="-1" role="dialog" aria-labelledby="modalArumaLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalArumaLabel">ARUMA LABORATORIO</h4>
+      </div>
+      <div class="modal-body">
+        Texto descriptivo.. 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 

@@ -186,6 +186,11 @@ h4 {
 
   }
 
+  i {
+
+  	font-size: 14pt; 
+  }
+
 }
 
 // --------------------------------------------
@@ -318,11 +323,37 @@ h4 {
 
     }
 
+.social_portada {
+
+	position: absolute;
+
+	bottom: 5%; 
+
+	right: 5%; 
+
+	color: @color-light; 
+
+	a {
+
+		color: @color-light; 
+
+		font-size: 26pt; 
+
+		text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+
+		&:hover {
+
+			opacity: 0.7; 
+		}
+	}
+
+}
+
 .texto_portada {
 
 	position: absolute;
 
-	top: 40%; 
+	top: 70%; 
     
 	text-align: center;
     
@@ -357,11 +388,15 @@ h4 {
 
 	h4 {
 
-		font-family: 'Lato', sans-serif; 
+		color: @color-light; 
+
+		//font-family: 'Lato', sans-serif; 
 
 		//letter-spacing: 1px; 
 
-		font-size: 12pt;
+		line-height: 1.4; 
+
+		font-size: 16pt;
 
 		font-weight: 300; 
 
@@ -372,6 +407,8 @@ h4 {
 		margin-right: auto; 
 
 		padding: 0px 20px; 
+
+		text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
 	}
 
 }
@@ -405,21 +442,6 @@ h4 {
 
 	}
 
-}
-
-.modal-header {
-
-    border-bottom: 0px solid #E5E5E5;
-}
-
-.modal-footer {
-
-    border-top: 0px solid #E5E5E5;
-}
-
-.modal-dialog {
-
-    width: 80%;
 }
 
 
@@ -987,11 +1009,17 @@ a, a:hover, a:active, a:focus {
 		//background-color: rgba(0, 0, 0, 0.5); 
 
 		background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+		
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+		
 		background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+		
 		background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+		
 		background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+		
 		background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
+		
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
 
 		& > div {
@@ -1006,6 +1034,11 @@ a, a:hover, a:active, a:focus {
 
 			padding: 60px 0 10px 0; 
 
+			transition-property: padding;
+  			
+  			transition-duration: 0.2s;
+  
+  			transition-timing-function: linear;
 		}
 
 
@@ -1024,6 +1057,12 @@ a, a:hover, a:active, a:focus {
 			margin-bottom: 0px; 
 
 			display: block;
+
+			transition-property: font-size;
+  			
+  			transition-duration: 0.2s;
+  
+  			transition-timing-function: linear;
 
 		}
 
@@ -1061,16 +1100,16 @@ a, a:hover, a:active, a:focus {
 
 		&:hover {
 
-			background-color: rgba(0, 0, 0, 0.5);
+			background-color: rgba(0, 0, 0, 0.4);
 
 			h2 {
 
-				//font-size: 22px; 
+				font-size: 24px; 
 			}
 
 			& > div {
 
-				//padding-bottom: 20px; 
+				padding: 60px 0 30px 0; 
 
 			}
 
@@ -1204,7 +1243,7 @@ a, a:hover, a:active, a:focus {
 
 		letter-spacing: 8px; 
 
-		margin: 40px 0; 
+		margin: 40px 10%; 
 
 	}
 
@@ -1222,11 +1261,21 @@ a, a:hover, a:active, a:focus {
 
 .tarjeta_producto {
 
-	img {
+	margin-bottom: 40px; 
 
-		padding: 0 20px; 
+	.img_container{
 
-		width: 100%; 
+		padding: 0;
+
+		//max-height: 200px; 
+
+		overflow: hidden;
+
+		img {
+
+			width: 100%; 
+
+		}
 
 	}
 
@@ -1243,24 +1292,81 @@ a, a:hover, a:active, a:focus {
 
 	h4 {
 
-		padding: 0 20px; 
+		padding: 0 0px; 
+
+		line-height: 1.2; 
+
+		min-height: 40px;
 
 	}
 
 }
 
+.modal-aruma {
+
+	& .modal-footer {
+
+	    border-top: 0px solid #E5E5E5;
+	}
+}
+
+
 .modal-producto {
 
-	padding: 0 0 15px 0;
+	//padding: 0 0 15px 0;
 
-	.col {
+	//margin: auto; 
 
-		padding-left: 0px;
+	.modal-dialog {
 
+		width: 80%; 
+
+		margin: 8% auto; 
+
+		/* Medium devices (desktops, 992px and up) */
+		@media (min-width: @screen-sm-min) {
+
+			width: 50%; 
+
+			margin: 2% auto; 
+		}
+
+		@media (min-width: @screen-md-min) {
+
+			width: 30%; 
+		}
+
+		/* Large devices (large desktops, 1200px and up) */
+		@media (min-width: @screen-lg-min) {
+
+			width: 33.333%; 
+		}
+
+	} 
+
+	.modal-body {
+
+		padding: 0; 
+
+		div {
+
+			padding: 20px; 
+		}
 	}
 
 	img {
-		max-height: 70vh;
+
+		width: 100%; 
+	}
+
+	& .modal-header {
+
+    	border-bottom: 0px solid #E5E5E5;
+	}
+
+	& .modal-footer {
+
+	    border-top: 0px solid #E5E5E5;
 	}
 
 }
@@ -1307,7 +1413,7 @@ a, a:hover, a:active, a:focus {
 
 	text-align: center;
 
-	padding: 40px 0; 
+	padding: 60px 0; 
 
 	i {
 
