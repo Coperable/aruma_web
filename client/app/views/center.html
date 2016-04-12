@@ -2,61 +2,22 @@
     <div class="imagen_portada" ng-style="{'background-image': 'url(http://images.collab-dev.com/aruma/'+center.main_picture+')'}" ng-style="{'background-size: cover !important;'}" ></div>
 
     <div class="texto_portada">
-          
-        <h1>Aruma <small>LAB</small></h1>
-        <h4>{{center.description}}</h4>
+        <h1> {{center.name}} </h1>
+        <h4>{{centar.description}}</h4>
     </div>
 
 </div>
 
-<div id="inicio"></div>
+<div class="sec_twitter">
 
-<div class="mini_gap"></div>
-
-<div>
-
-    <div class="button-group filters-button-group">
-
-        <button class="btn_filtro is-checked" data-filter="*">todo</button>
-        <button class="btn_filtro" data-filter=".products">productos</button>
-        <button class="btn_filtro" data-filter=".organizations">emprendimientos</button>
-        <button class="btn_filtro" data-filter=".activities">actividades</button>
-        <button class="btn_filtro" data-filter=".centers">laboratorio</button>
-
-    </div>
-
-    <!--div class="toggle_map">
-        <h4>board <i class="fa fa-toggle-off"></i> mapa</h4>
-    </div-->
-
-    <div class="mini_gap"></div>
-
-    <div class="grid" style="min-height: 620px">
-        <div class="grid-sizer"></div>
-
-        <div class="grid-item {{item.type}}" ng-class="{'novedades':'item.novelty'}" ng-repeat="item in arrange_items track by $index |limitTo: 8" ng-click="view(item.type, item.id)">
-            <img ng-src="http://images.collab-dev.com/trim/336x257/smart/aruma/{{item.main_picture}}">
-            <div class="caption"><div>
-                <h2>{{item.name}}</h2>
-                <span>{{item.description}}</span>
-            </div>
-
-        </div>
-
-    </div>
+            <p>
+<b>ARUMA LAB</b> es un laboratorio humano en continua transformación, construido desde una experiencia comunitaria enfocada en el crecimiento espiritual. El resultado, una PLATAFORMA que potencia y acompaña emprendedores conscientes, personas comprometidas con su evolución personal a partir de la materialización de proyectos que dirigen.
+El corazón y mayor particularidad de esta plataforma es que funciona en base a un paradigma de común acuerdo entre todos los que la integran: el de ser creadores de su propia realidad, y por ende, responsables de todo lo que sucede en sus emprendimientos y sus vidas. Esta premisa clave transforma a cada emprendimiento en el vehículo y espejo del emprendedor, ampliando como una lupa las conquistas y limitaciones personales, que luego permiten a los emprendedores conducir con mayor consciencia en el viaje que los lleva más allá de sí mismos.
+            </p>
+</div>
+<div class="sec_twitter" style="background-color: #FFFFFF; color: #00000">
+            <p style="color: #000000 !important;">
+El acompañamiento se hace tanto desde lo denso y tangible, a través de herramientas y servicios que se ofrecen de acuerdo a las necesidades particulares del emprendimiento, tales como: locación (espacio de producción, sala de reuniones y coworking), asesoramiento técnico, charlas temáticas, y consultorías en áreas específicas (administrativo, contable, etc) como desde lo sutil, a través de un acompañamiento personalizado con un focalizador, círculos de escucha, y abordando técnicas y terapias de autoconocimiento para la ampliación de conciencia.
+            </p>
 
 </div>
-
-
-<div class="sec_info">
-
-    <div class="info_inner">
-        <h1>Estamos en contacto</h1>
-        <div class="info_botones">
-            <button class="btn_action">Newsletter</button>
-            <button class="btn_nav">Escribinos</button>
-        </div>
-    </div>
-
-</div>
-

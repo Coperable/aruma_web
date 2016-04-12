@@ -1,7 +1,16 @@
 'use strict';
 
 angular.module('poliApp')
-.controller('MainCtrl', function ($scope, $timeout, $location, $http, $sce, api_host, Page) {
+.controller('MainCtrl', function ($rootScope, $scope, $timeout, $location, $http, $sce, api_host, Page) {
+
+
+    if($rootScope.initied) {
+        window.loading_screen = window.pleaseWait({
+            backgroundColor: '#59BC6C',
+            loadingHtml: "<div class='sk-double-bounce'> <div class='sk-child sk-double-bounce1'></div> <div class='sk-child sk-double-bounce2'></div> </div><h1>Aruma <small>LAB</small></h1>"
+        });
+    }
+
     $scope.setup_components = function() {
 
             /*jQuery('a[href*=#]').click(function() {
@@ -56,19 +65,15 @@ angular.module('poliApp')
 
 
             jQuery('.grid').imagesLoaded().always( function() {
+                console.log('loading');
                 jQuery('.grid').masonry({
                     itemSelector: '.grid-item',
                     percentPosition: true,
                     columnWidth: '.grid-sizer'
                 });
-
                 window.loading_screen.finish(); 
+                $rootScope.initied = true;
             });  
-
-
-
-
-
 
             jQuery('.background-image-holder').each(function() {
                 var imgSrc = jQuery(this).children('img').attr('src');
@@ -115,9 +120,11 @@ angular.module('poliApp')
 
         _.each($scope.entities , function(entity) {
             _.each(data[entity], function(item) {
-                $scope.items.push(_.extend(item, {
-                    type: entity
-                }));
+                if(!(entity == 'activities' && item.center_activity)) {
+                    $scope.items.push(_.extend(item, {
+                        type: entity
+                    }));
+                }
             });
         });
 
@@ -134,11 +141,12 @@ angular.module('poliApp')
             loadingHtml: "<div class='sk-double-bounce'> <div class='sk-child sk-double-bounce1'></div> <div class='sk-child sk-double-bounce2'></div> </div><h1>Aruma <small>LAB</small></h1>"
         });
 
+        console.log('type: '+type+' - id: '+id);
         $location.path('/'+type+'/'+id);
     };
 
 })
-.controller('center-controller', function ($scope, $timeout, $http, $routeParams, api_host, Center) {
+.controller('_center-controller', function ($scope, $timeout, $http, $routeParams, api_host, Center) {
 
     $scope.center = {};
 
@@ -146,6 +154,12 @@ angular.module('poliApp')
         id: $routeParams.id
     }, function(organization) {
         $scope.organization = organization;
+
+        window.loading_screen.finish(); 
+
+    }, function() {
+
+        window.loading_screen.finish(); 
     });
 
 
@@ -240,7 +254,9 @@ angular.module('poliApp')
 
         $scope.map = new google.maps.Map(document.getElementById('map'), {
             center: {lng: center_lng, lat: center_lat},
-            zoom: 12
+            zoom: 12,
+            scrollwheel: false,
+            draggable: false
         });
 
         $scope.openWindow = function(infoWindow, marker) {
@@ -419,66 +435,30 @@ angular.module('poliApp')
 .controller('ProyectoCtrl', function () {
 
 })
-.controller('center-controller', function ($scope, $timeout, $location, $http, api_host, Page) {
+.controller('center-controller', function ($rootScope, $scope, $timeout, $location, $http, api_host, Page) {
     $scope.setup_components = function() {
-
-            jQuery('a[href*=#]').click(function() {
-                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-                    var target = jQuery(this.hash);
-                    target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
-                    if (target.length) {
-                        jQuery('html,body').animate({
-                            scrollTop: target.offset().top
-                        }, 1000);
-                        return false;
-                    }
-                }
-            });
             
-            $scope.grid = jQuery('.grid').isotope({
-                itemSelector: '.grid-item',
-                layoutMode: 'masonry'
+            jQuery('.background-image-holder').each(function() {
+                var imgSrc = jQuery(this).children('img').attr('src');
+                jQuery(this).css('background', 'url("' + imgSrc + '")');
+                jQuery(this).children('img').hide();
+                jQuery(this).css('background-position', 'initial');
             });
 
-            var filterFns = {
-                numberGreaterThan50: function() {
-                  var number = jQuery(this).find('.number').text();
-                  return parseInt( number, 10 ) > 50;
-                },
+            if (jQuery(window).width() > 768) {
+                jQuery('.parallax:nth-of-type(1) .background-image-holder').css('top', -(jQuery('nav').outerHeight(true)));
+            }
 
-                ium: function() {
-                  var name = jQuery(this).find('.name').text();
-                  return name.match( /iumjQuery/ );
-                }
-            };
-            
-            jQuery('.filters-button-group').on( 'click', 'button', function() {
-                var filterValue = jQuery( this ).attr('data-filter');
-                filterValue = filterFns[ filterValue ] || filterValue;
-                $scope.grid.isotope({ filter: filterValue });
-            });
-            
-            jQuery('.button-group').each( function( i, buttonGroup ) {
-                var jQuerybuttonGroup = jQuery( buttonGroup );
-                jQuerybuttonGroup.on( 'click', 'button', function() {
-                  jQuerybuttonGroup.find('.is-checked').removeClass('is-checked');
-                  jQuery( this ).addClass('is-checked');
-                });
-            });
-          
-            $scope.grid = jQuery('.grid').masonry({
-                itemSelector: '.grid-item',
-                percentPosition: true,
-                columnWidth: '.grid-sizer'
-            });
-
-            /*
-            $scope.grid.imagesLoaded().progress( function() {
-                $scope.grid.masonry();
-            });  
-            */
+            if (jQuery(window).width() > 768) {
+                jQuery('section.fullscreen:nth-of-type(1)').css('height', (jQuery(window).height() - jQuery('nav').outerHeight(true)));
+            }
 
     };
+
+    $scope.getImageSrc = function (image_name, height, width) {
+        return $sce.trustAsResourceUrl('http://images.collab-dev.com/'+height+'x'+width+'/aruma/'+image_name);
+    };
+
 
     $scope.arrange_items = [];
     $scope.items = [];
@@ -486,10 +466,12 @@ angular.module('poliApp')
         '390', '189', '150', '246', '257', '230', '224', '173'
     ];
 
-    $scope.entities = ['organizations', 'products', 'activities', 'centers'];
+    $scope.entities = ['organizations', 'activities'];
+    //$scope.entities = ['organizations', 'products', 'activities', 'centers'];
 
     $http.get(api_host+'/api/pages/home').success(function(page) {
         $scope.home = page;
+        $scope.center = _.first(page.centers);
 
         var data = $scope.home;
 
@@ -505,6 +487,7 @@ angular.module('poliApp')
 
         $timeout(function() {
             $scope.setup_components();
+            window.loading_screen.finish(); 
         }, 2000);
     });
 
