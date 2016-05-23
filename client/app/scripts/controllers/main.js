@@ -118,6 +118,8 @@ angular.module('poliApp')
 
         var data = $scope.home;
 
+        $scope.$root.facebook_link = data.facebook_link;
+
         _.each($scope.entities , function(entity) {
             _.each(data[entity], function(item) {
                 if(!(entity == 'activities' && item.center_activity)) {
@@ -418,6 +420,7 @@ angular.module('poliApp')
 
     $http.get(api_host+'/api/pages/home').success(function(page) {
         $scope.home = page;
+        $scope.$root.facebook_link = $scope.home.facebook_link;
         $timeout(function() {
             $scope.setup_components();
         }, 2000);
@@ -474,6 +477,7 @@ angular.module('poliApp')
         $scope.center = _.first(page.centers);
 
         var data = $scope.home;
+        $scope.$root.facebook_link = data.facebook_link;
 
         _.each($scope.entities , function(entity) {
             _.each(data[entity], function(item) {

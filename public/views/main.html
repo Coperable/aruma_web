@@ -24,7 +24,7 @@
 
         <!-- button class="btn_filtro is-checked" data-filter="*">todo</button -->
         <!--button class="btn_filtro" data-filter=".products">productos</button-->
-        <button class="btn_filtro" data-toggle="modal" data-target="#modalAruma">Aruma laboratorio</button>
+        <button class="btn_filtro" data-toggle="modal" data-target="#modalAruma">Aruma Lab</button>
         <button class="btn_filtro" data-filter=".organizations">emprendimientos</button>
         <button class="btn_filtro" data-filter=".activities">actividades</button>
         
@@ -43,10 +43,10 @@
         <div class="grid-item {{item.type}}" ng-class="{'novedades':'item.novelty'}" ng-repeat="item in arrange_items track by $index |limitTo: 8" ng-click="view(item.type, item.id)" style="padding: 0px; margin: 0px">
             <img ng-src="http://images.collab-dev.com/trim/336x{{heights[$index]}}/smart/aruma/{{item.main_picture}}" class="img-responsive" >
             <div class="caption">
-            <div>
-                <h2>{{item.name}}</h2>
-                <span>{{item.description}}</span>
-                </div>
+                <!--div>
+                    <h2>{{item.name}}</h2>
+                    <span>{{item.description}}</span>
+                </div-->
             </div>
 
         </div>
@@ -86,7 +86,7 @@ El acompañamiento se hace tanto desde lo denso y tangible, a través de herrami
             <h1>Estamos en contacto</h1>
             <div class="info_botones">
                 <a href="https://docs.google.com/forms/d/1ZmljYAit6fvk3RO2N3qZQ-njWKI7Jw_AwfXB-xZ2_5g/viewform" target="_blank" class="btn_action">Newsletter</a>
-                <a href="#" class="btn_nav">Escribinos</a>
+                <a href="mailto:info@arumalab.com" class="btn_nav">Escribinos</a>
             </div>
         </div>
 

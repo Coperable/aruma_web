@@ -10,7 +10,7 @@
         
         <a href="" target="_blank"><i class="fa fa-facebook-square fa-fw"></i></a>
 
-        <a href="" target="_blank"><i class="fa fa-twitter-square fa-fw"></i></a>
+        <!--a href="" target="_blank"><i class="fa fa-twitter-square fa-fw"></i></a-->
 
         <a href="" target="_blank"><i class="fa fa-instagram fa-fw"></i></a>
 
@@ -115,7 +115,7 @@
 
 <div ng-repeat="product in organization.products">
 
-    <div class="modal modal-producto fade" id="product_{{product.id}}" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal modal-producto fade modal-wide" id="product_{{product.id}}" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
 
         <div class="modal-dialog" role="document">
 
@@ -127,11 +127,11 @@
                     <h4 class="modal-title" id="myModalLabel">{{product.name}}</h4>
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body text-center">
 
-                    <img ng-src="http://images.collab-dev.com/600x800/smart/aruma/{{product.main_picture}}" class="img-responsive">
+                    <img ng-src="http://images.collab-dev.com/600x800/smart/aruma/{{product.main_picture}}" class="img-responsive center-block">
 
-                    <div>
+                    <div class="row text-center" style="margin-top: 30px;">
 
                         <p>{{product.description}}</p>
 
@@ -179,11 +179,18 @@
 </div>
 
 
-<div class="sec_twitter">
+<div class="sec_socials" ng-if="organization.facebook_link || organization.instagram_link">
 
-	<i class="fa fa-twitter"></i>
+    <a href="{{organization.facebook_link}}" target="_blank" ng-if="organization.facebook_link">
+        <i class="fa fa-facebook-square"></i>
+    </a>
+    <a href="{{organization.instagram_link}}" target="_blank" ng-if="organization.instagram_link">
+        <i class="fa fa-instagram fa-fw"></i>
+    </a>
 
+    <!--
 	<p>@ana-es: compartiendo un delicioso helado con mis amigos. #haulani</p>
+    -->
 
     <!--div class="twitter-feed tweets-slider large">
         <div class="tweets-feed" data-widget-id="616641300591460353">

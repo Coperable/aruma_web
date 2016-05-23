@@ -43,10 +43,10 @@
         <div class="grid-item {{item.type}}" ng-class="{'novedades':'item.novelty'}" ng-repeat="item in arrange_items track by $index |limitTo: 8" ng-click="view(item.type, item.id)" style="padding: 0px; margin: 0px">
             <img ng-src="http://images.collab-dev.com/trim/336x{{heights[$index]}}/smart/aruma/{{item.main_picture}}" class="img-responsive" >
             <div class="caption">
-            <div>
-                <h2>{{item.name}}</h2>
-                <span>{{item.description}}</span>
-                </div>
+                <!--div>
+                    <h2>{{item.name}}</h2>
+                    <span>{{item.description}}</span>
+                </div-->
             </div>
 
         </div>

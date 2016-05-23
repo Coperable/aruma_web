@@ -80,6 +80,8 @@ class OrganizationController extends Controller {
             $organization->how_text = $request->input('how_text');
             $organization->website = $request->input('website');
             $organization->twitter_hashtag = $request->input('twitter_hashtag');
+            $organization->facebook_link = $request->input('facebook_link');
+            $organization->instagram_link = $request->input('instagram_link');
             $organization->instagram_hashtag = $request->input('instagram_hashtag');
             $organization->media_id = $request->input('media_id');
             $organization->title_legend = $request->input('title_legend');
@@ -123,6 +125,8 @@ class OrganizationController extends Controller {
             $organization->website = $request->input('website');
             $organization->media_id = $request->input('media_id');
             $organization->twitter_hashtag = $request->input('twitter_hashtag');
+            $organization->facebook_link = $request->input('facebook_link');
+            $organization->instagram_link = $request->input('instagram_link');
             $organization->instagram_hashtag = $request->input('instagram_hashtag');
             $organization->title_legend = $request->input('title_legend');
             $organization->products_legend = $request->input('products_legend');

@@ -694,8 +694,14 @@ a:focus {
 .modal-producto .col {
   padding-left: 0px;
 }
+.modal-wide .modal-dialog {
+  width: 60%; 
+}
+.modal-producto modal-body {
+  min-height: 450px;
+}
 .modal-producto img {
-  max-height: 70vh;
+  max-height: 400px;
 }
 .donde_tit {
   background-color: #e6b800;
@@ -725,6 +731,22 @@ a:focus {
   font-size: 40px;
 }
 .sec_twitter p {
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 20px auto;
+  max-width: 60%;
+}
+.sec_socials {
+  background-color: #282828;
+  text-align: center;
+  padding: 40px 0;
+}
+.sec_socials a {
+  display: inline-block;
+  color: #59bc6c;
+  font-size: 40px;
+}
+.sec_socials p {
   color: #ffffff;
   letter-spacing: 2px;
   margin: 20px auto;

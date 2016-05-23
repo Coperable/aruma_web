@@ -47,7 +47,7 @@
 
                 <div class="col-sm-6 nav-social">
 
-                    <a href="https://www.facebook.com/comunidad.aruma" target="_blank">
+                    <a href="{{facebook_link}}" target="_blank" ng-if="facebook_link">
                         <i class="fa fa-facebook-square"></i>
                         <!--img src="/images/fb-icon.png"-->
                     </a>
@@ -126,7 +126,15 @@
         <div class="bottom_bar">
 
             <a class="btn_navegacion" href="#portada">TOP</a>
-            <span class="social"><i class="fa fa-twitter"></i> <i class="fa fa-facebook"></i><i class="fa fa-instagram"></i> <i class="fa fa-vimeo"></i></span>
+            <span class="social">
+                <a href="{{facebook_link}}" target="_blank">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="{{instagram_link}}" target="_blank" ng-if="instagram_link">
+                    <i class="fa fa-instagram"></i> 
+                </a>
+                <!--i class="fa fa-vimeo"></i-->
+            </span>
 
         </div>
 

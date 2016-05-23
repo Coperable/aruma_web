@@ -67,10 +67,13 @@ class UserController extends Controller {
     }
 
     public function update(Request $request) {
-        $user = User::find($request['user']['sub']);
+
+        $user = User::find($request->input('id'));
 
         $user->username = $request->input('username');
         $user->email = $request->input('email');
+        $user->name = $request->input('name');
+        $user->lastname = $request->input('lastname');
 
         $user->save();
 
@@ -208,6 +211,11 @@ class UserController extends Controller {
         return response()->json($user);
 
     }
+
+	public function destroy($id) {
+        DB::table('organizations_medias')->where('organization_id', '=', $id)->delete();
+        USers::destroy($id);
+	}
 
 
 }
