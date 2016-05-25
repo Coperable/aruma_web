@@ -91,4 +91,18 @@ El acompañamiento se hace tanto desde lo denso y tangible, a través de herrami
         </div>
 
     </div>
+
+    <div class="sec_logos" ng-if="logos.length">
+
+        <div class="text-center">
+            <div class="logo block-center" ng-repeat="logo in logos" style="display:inline-block; vertical-align: middle">
+                <a href="{{logo.url}}" target="_blank">
+                    <img ng-src="http://images.collab-dev.com/aruma/{{logo.name}}" class="img-responsive" alt="{{logo.title}}">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>

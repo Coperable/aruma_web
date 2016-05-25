@@ -11,6 +11,56 @@ angular.module('poliApp')
         });
     }
 
+    $scope.logos = [];
+
+    $scope._logos = [{
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },
+    {
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },{
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },{
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },    {
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },{
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },{
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },    {
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },{
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },{
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    },{
+        link: 'http://facebook.com',
+        title: 'facebook',
+        image: '/images/apple-touch-icon.png'
+    }
+];
+
     $scope.setup_components = function() {
 
             /*jQuery('a[href*=#]').click(function() {
@@ -135,6 +185,10 @@ angular.module('poliApp')
         $timeout(function() {
             $scope.setup_components();
         }, 3000);
+    });
+
+    $http.get(api_host+'/api/media/logo').success(function(logos) {
+        $scope.logos = logos;
     });
 
     $scope.view = function(type, id) {

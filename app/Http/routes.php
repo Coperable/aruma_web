@@ -27,6 +27,9 @@ Route::resource('api/pages', 'PageController');
 Route::post('api/media/upload', ['middleware' => 'auth', 'uses' => 'MediaController@storeImage']);
 Route::post('api/media/organization/{organizationId}/upload', ['middleware' => 'auth', 'uses' => 'MediaController@addOrganizationMedia']);
 Route::post('api/media/activity/{activityId}/upload', ['middleware' => 'auth', 'uses' => 'MediaController@addActivityMedia']);
+Route::post('api/media/logo/upload', ['middleware' => 'auth', 'uses' => 'MediaController@addLogoMedia']);
+Route::post('api/media/logo/{id}/remove', ['middleware' => 'auth', 'uses' => 'MediaController@destroyLogo']);
+Route::get('api/media/logo', ['uses' => 'MediaController@retrieveLogos']);
 
 Route::get('api/organization/{id}/geopoints', ['uses' => 'OrganizationController@geopoints']);
 Route::get('api/organization/{id}/medias', ['uses' => 'OrganizationController@medias']);

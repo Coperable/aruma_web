@@ -17,7 +17,7 @@ use Aruma\Model\ActivityMedia;
 class MediaController extends Controller {
 
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show', 'videosSearch', 'parseVideoId']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'videosSearch', 'parseVideoId', 'retrieveLogos']]);
     }
 
 	public function index() {
@@ -157,6 +157,59 @@ class MediaController extends Controller {
  
     }
 
+    public function addLogoMedia(Request $request) {
+
+        if(!$request->hasFile('file')) { 
+            return Response::json(['error' => 'No File Sent']);
+        }
+
+        if(!$request->file('file')->isValid()) {
+            return Response::json(['error' => 'File is not valid']);
+        }
+
+        $file = $request->file('file');
+
+        $v = Validator::make(
+            $request->all(),
+            ['file' => 'required|mimes:jpeg,jpg,png|max:8000']
+        );
+
+        if($v->fails()) {
+            return Response::json(['error' => $v->errors()]);
+        }
+
+        $user = User::find($request['user']['sub']);
+
+        $image = Media::create([
+            'name' => $request->file('file')->getClientOriginalName(),
+            'ext' => $request->file('file')->guessExtension(),
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'url' => $request->input('url'),
+            'user_id' => $user->id,
+            'type' => 'DATA'
+        ]);
+        
+        $filename = 'media_'.md5(strtolower(trim($image->name))).'_'.$image->id . '.' . $image->ext;
+
+        $image->name = $filename;
+        $image->save();
+
+        Storage::disk('local')->put($filename,  File::get($file));
+        Storage::disk('s3-aruma')->put('/aruma/' . $filename, file_get_contents($file), 'public');
+        
+        return Response::json(['OK' => 1, 'filename' => $image->name, 'media_id' => $image->id]);
+ 
+    }
+
+    public function retrieveLogos(Request $request) {
+        $medias = Media::where('type', 'DATA')->get();
+        return $medias;
+    }
+
+    public function destroyLogo(Request $request, $id) {
+        Media::destroy($id);
+    }
 
 }
 
