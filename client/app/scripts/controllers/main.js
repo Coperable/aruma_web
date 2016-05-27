@@ -202,7 +202,7 @@ angular.module('poliApp')
     };
 
 })
-.controller('_center-controller', function ($scope, $timeout, $http, $routeParams, api_host, Center) {
+.controller('center-controller', function ($scope, $timeout, $http, $routeParams, api_host, Center) {
 
     $scope.center = {};
 
