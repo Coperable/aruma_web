@@ -270,7 +270,7 @@ angular.module('poliApp')
             };
 
             jQuery('.organization-instafeedtag').each(function() {
-                jQuery(this).children('.grilla_instagram').spectragram('getRecentTagged', {
+                jQuery(this).children('.grilla_instagram').spectragram('getUserFeed', {
                     query: $scope.organization.instagram_hashtag,
                     max: 12,
                     wrapEachWith: '<div class="col-sm-4"></div>'
